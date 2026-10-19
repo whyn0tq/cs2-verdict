@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280" role="img" aria-label="Verdict">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0b0d"/><stop offset="1" stop-color="#070708"/></linearGradient>
+    <radialGradient id="glowA" cx="1" cy="0" r="0.75"><stop offset="0" stop-color="#e5383b" stop-opacity="0.30"/><stop offset="1" stop-color="#e5383b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowB" cx="0" cy="1" r="0.7"><stop offset="0" stop-color="#a4161a" stop-opacity="0.26"/><stop offset="1" stop-color="#a4161a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.07"/><stop offset="1" stop-color="#fff" stop-opacity="0.02"/></linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5157"/><stop offset="1" stop-color="#e5383b"/></linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  </defs>
+  <rect width="1200" height="280" rx="22" fill="url(#bg)"/>
+  <rect width="1200" height="280" rx="22" fill="url(#glowA)"/>
+  <rect width="1200" height="280" rx="22" fill="url(#glowB)"/>
+  <rect x="0.5" y="0.5" width="1199" height="279" rx="21.5" fill="url(#glass)" stroke="#fff" stroke-opacity="0.12"/>
+  <g transform="translate(96 76)">
+    <rect width="128" height="128" rx="36" fill="#e5383b" opacity="0.55" filter="url(#blur)"/>
+    <rect width="128" height="128" rx="36" fill="url(#mark)"/>
+    <rect x="1" y="1" width="126" height="126" rx="35" fill="none" stroke="#fff" stroke-opacity="0.28"/>
+    <path d="M32 36l32 60 32-60" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="272" y="140" fill="#f1f1f3" font-family="Inter,'Segoe UI Variable','Segoe UI',system-ui,-apple-system,Roboto,sans-serif" font-size="76" font-weight="800" letter-spacing="-1.5">Verdict</text>
+  <text x="274" y="188" fill="#ff7a7f" font-family="Inter,'Segoe UI Variable','Segoe UI',system-ui,-apple-system,Roboto,sans-serif" font-size="26" font-weight="600">The last word belongs to the admin.</text>
+  <text x="274" y="226" fill="#8d8d96" font-family="Inter,'Segoe UI Variable','Segoe UI',system-ui,-apple-system,Roboto,sans-serif" font-size="20">Bans, mutes and admins for Counter-Strike 2 · Metamod:Source</text>
+</svg>

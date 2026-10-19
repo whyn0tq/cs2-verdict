@@ -1,0 +1,11 @@
+"Databases"
+{
+    "verdict"
+    {
+        "host"      "127.0.0.1"
+        "user"      "verdict_plugin"
+        "pass"      ""
+        "database"  "verdict"
+        "port"      "3306"
+    }
+}

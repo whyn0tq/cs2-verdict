@@ -1,0 +1,1178 @@
+"Phrases"
+{
+    "MainTitle"
+    {
+        "ru"    "Verdict — админ-меню"
+        "ua"    "Verdict — адмін-меню"
+        "en"    "Verdict — admin menu"
+    }
+    "NoAccess"
+    {
+        "ru"    "Нет доступных разделов"
+        "ua"    "Немає доступних розділів"
+        "en"    "Nothing available"
+    }
+    "Category_Punishments"
+    {
+        "ru"    "Наказания"
+        "ua"    "Покарання"
+        "en"    "Punishments"
+    }
+    "Item_PunishPlayer"
+    {
+        "ru"    "Наказать игрока"
+        "ua"    "Покарати гравця"
+        "en"    "Punish player"
+    }
+    "Item_UnPunishPlayer"
+    {
+        "ru"    "Снять наказание"
+        "ua"    "Зняти покарання"
+        "en"    "Remove punishment"
+    }
+    "Item_PunishOfflinePlayer"
+    {
+        "ru"    "Наказать вышедшего игрока"
+        "ua"    "Покарати гравця, що вийшов"
+        "en"    "Punish disconnected player"
+    }
+    "Item_UnPunishOfflinePlayer"
+    {
+        "ru"    "Снять наказание (оффлайн)"
+        "ua"    "Зняти покарання (офлайн)"
+        "en"    "Remove punishment (offline)"
+    }
+    "SelectPunishType"
+    {
+        "ru"    "Выберите наказание"
+        "ua"    "Оберіть покарання"
+        "en"    "Select punishment"
+    }
+    "SelectUnPunishType"
+    {
+        "ru"    "Что снять"
+        "ua"    "Що зняти"
+        "en"    "What to remove"
+    }
+    "Item_BanPlayer"
+    {
+        "ru"    "Бан"
+        "ua"    "Бан"
+        "en"    "Ban"
+    }
+    "Item_MutePlayer"
+    {
+        "ru"    "Мут (микрофон)"
+        "ua"    "Мут (мікрофон)"
+        "en"    "Mute (voice)"
+    }
+    "Item_GagPlayer"
+    {
+        "ru"    "Гаг (чат)"
+        "ua"    "Гаг (чат)"
+        "en"    "Gag (chat)"
+    }
+    "Item_SilencePlayer"
+    {
+        "ru"    "Сайленс (чат и микрофон)"
+        "ua"    "Сайленс (чат і мікрофон)"
+        "en"    "Silence (chat and voice)"
+    }
+    "Item_UnBanPlayer"
+    {
+        "ru"    "Разбан"
+        "ua"    "Розбан"
+        "en"    "Unban"
+    }
+    "Item_UnMutePlayer"
+    {
+        "ru"    "Снять мут"
+        "ua"    "Зняти мут"
+        "en"    "Unmute"
+    }
+    "Item_UnGagPlayer"
+    {
+        "ru"    "Снять гаг"
+        "ua"    "Зняти гаг"
+        "en"    "Ungag"
+    }
+    "Item_UnSilencePlayer"
+    {
+        "ru"    "Снять сайленс"
+        "ua"    "Зняти сайленс"
+        "en"    "Unsilence"
+    }
+    "SelectPlayer"
+    {
+        "ru"    "Выберите игрока"
+        "ua"    "Оберіть гравця"
+        "en"    "Select player"
+    }
+    "SelectOfflinePlayer"
+    {
+        "ru"    "Выберите игрока (оффлайн)"
+        "ua"    "Оберіть гравця (офлайн)"
+        "en"    "Select player (offline)"
+    }
+    "SelectReason"
+    {
+        "ru"    "Выберите причину"
+        "ua"    "Оберіть причину"
+        "en"    "Select reason"
+    }
+    "SelectTime"
+    {
+        "ru"    "Выберите срок"
+        "ua"    "Оберіть термін"
+        "en"    "Select duration"
+    }
+    "NoPlayers"
+    {
+        "ru"    "Нет подходящих игроков"
+        "ua"    "Немає відповідних гравців"
+        "en"    "No players available"
+    }
+    "NoTimes"
+    {
+        "ru"    "Нет доступных сроков"
+        "ua"    "Немає доступних термінів"
+        "en"    "No durations available"
+    }
+    "Item_OwnReason"
+    {
+        "ru"    "Своя причина"
+        "ua"    "Своя причина"
+        "en"    "Custom reason"
+    }
+    "EnterOwnReason"
+    {
+        "ru"    "Напишите причину в чат"
+        "ua"    "Напишіть причину в чат"
+        "en"    "Type the reason in chat"
+    }
+    "UnPunishSuccess"
+    {
+        "ru"    "Наказание с игрока {LIGHTRED}{target}{DEFAULT} снято"
+        "ua"    "Покарання з гравця {LIGHTRED}{target}{DEFAULT} знято"
+        "en"    "Punishment removed from {LIGHTRED}{target}{DEFAULT}"
+    }
+    "PlayerLeft"
+    {
+        "ru"    "Игрок уже вышел с сервера"
+        "ua"    "Гравець уже вийшов із сервера"
+        "en"    "The player has already left"
+    }
+    "TargetImmune"
+    {
+        "ru"    "У игрока иммунитет выше вашего"
+        "ua"    "У гравця імунітет вищий за ваш"
+        "en"    "The target's immunity is higher than yours"
+    }
+    "TimeNotAllowed"
+    {
+        "ru"    "Этот срок вам недоступен"
+        "ua"    "Цей термін вам недоступний"
+        "en"    "You are not allowed to use this duration"
+    }
+    "Forever"
+    {
+        "ru"    "навсегда"
+        "ua"    "назавжди"
+        "en"    "permanently"
+    }
+    "Expired"
+    {
+        "ru"    "истекло"
+        "ua"    "минуло"
+        "en"    "expired"
+    }
+    "Days"
+    {
+        "ru"    " д."
+        "ua"    " д."
+        "en"    "d"
+    }
+    "Hours"
+    {
+        "ru"    " ч."
+        "ua"    " год."
+        "en"    "h"
+    }
+    "Minutes"
+    {
+        "ru"    " мин."
+        "ua"    " хв."
+        "en"    "m"
+    }
+    "Seconds"
+    {
+        "ru"    " сек."
+        "ua"    " сек."
+        "en"    "s"
+    }
+    "NoReason"
+    {
+        "ru"    "Без причины"
+        "ua"    "Без причини"
+        "en"    "No reason"
+    }
+    "Console"
+    {
+        "ru"    "Сервер"
+        "ua"    "Сервер"
+        "en"    "Server"
+    }
+    "Admin"
+    {
+        "ru"    "Администратор"
+        "ua"    "Адміністратор"
+        "en"    "Admin"
+    }
+    "BannedKick"
+    {
+        "ru"    "Вы забанены на этом сервере. Причина: {reason}. Срок: {time}"
+        "ua"    "Вас забанено на цьому сервері. Причина: {reason}. Термін: {time}"
+        "en"    "You are banned from this server. Reason: {reason}. Duration: {time}"
+    }
+    "KickedReason"
+    {
+        "ru"    "Вас кикнули: {reason}"
+        "ua"    "Вас кікнули: {reason}"
+        "en"    "You were kicked: {reason}"
+    }
+    "Kick_All"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} кикнул {LIGHTRED}{target}{DEFAULT}: {reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} кікнув {LIGHTRED}{target}{DEFAULT}: {reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} kicked {LIGHTRED}{target}{DEFAULT}: {reason}"
+    }
+
+    "Punish_Target_Ban"
+    {
+        "ru"    "Вас забанил {LIGHTRED}{admin}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "Вас забанив {LIGHTRED}{admin}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "You were banned by {LIGHTRED}{admin}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Target_Mute"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил вам микрофон на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув вам мікрофон на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} muted your voice for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Target_Gag"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил вам чат на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув вам чат на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} gagged your chat for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Target_Silence"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил вам чат и микрофон на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув вам чат і мікрофон на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} silenced you for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Admin_Ban"
+    {
+        "ru"    "Вы забанили {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "Ви забанили {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "You banned {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Admin_Mute"
+    {
+        "ru"    "Вы отключили микрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "Ви вимкнули мікрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "You muted {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Admin_Gag"
+    {
+        "ru"    "Вы отключили чат {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "Ви вимкнули чат {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "You gagged {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_Admin_Silence"
+    {
+        "ru"    "Вы отключили чат и микрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "Ви вимкнули чат і мікрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "You silenced {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_All_Ban"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} забанил {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} забанив {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} banned {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_All_Mute"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил микрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув мікрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} muted {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_All_Gag"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил чат {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув чат {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} gagged {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Punish_All_Silence"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} отключил чат и микрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув чат і мікрофон {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{time}{DEFAULT}. Причина: {LIGHTRED}{reason}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} silenced {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{time}{DEFAULT}. Reason: {LIGHTRED}{reason}"
+    }
+    "Unpunish_All_Ban"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} разбанил {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} розбанив {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unbanned {LIGHTRED}{target}"
+    }
+    "Unpunish_All_Mute"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил микрофон {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув мікрофон {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unmuted {LIGHTRED}{target}"
+    }
+    "Unpunish_All_Gag"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил чат {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув чат {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} ungagged {LIGHTRED}{target}"
+    }
+    "Unpunish_All_Silence"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил чат и микрофон {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув чат і мікрофон {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unsilenced {LIGHTRED}{target}"
+    }
+    "Unpunish_Target_Ban"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} снял с вас бан"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} зняв з вас бан"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} removed your ban"
+    }
+    "Unpunish_Target_Mute"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил вам микрофон"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув вам мікрофон"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unmuted your voice"
+    }
+    "Unpunish_Target_Gag"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил вам чат"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув вам чат"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} ungagged your chat"
+    }
+    "Unpunish_Target_Silence"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил вам чат и микрофон"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув вам чат і мікрофон"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unsilenced you"
+    }
+
+    "MuteActiveCenter"
+    {
+        "ru"    "Ваш микрофон отключён. Причина: {reason}. Осталось: {time}"
+        "ua"    "Ваш мікрофон вимкнено. Причина: {reason}. Залишилось: {time}"
+        "en"    "Your voice is muted. Reason: {reason}. Time left: {time}"
+    }
+    "MuteActiveChat"
+    {
+        "ru"    "Ваш чат отключён. Причина: {LIGHTRED}{reason}{DEFAULT}. Осталось: {LIGHTRED}{time}"
+        "ua"    "Ваш чат вимкнено. Причина: {LIGHTRED}{reason}{DEFAULT}. Залишилось: {LIGHTRED}{time}"
+        "en"    "Your chat is gagged. Reason: {LIGHTRED}{reason}{DEFAULT}. Time left: {LIGHTRED}{time}"
+    }
+    "MuteExpired"
+    {
+        "ru"    "Срок ограничения истёк"
+        "ua"    "Термін обмеження минув"
+        "en"    "Your restriction has expired"
+    }
+    "AdminExpired"
+    {
+        "ru"    "Срок ваших админ-прав истёк"
+        "ua"    "Термін ваших адмін-прав минув"
+        "en"    "Your admin rights have expired"
+    }
+
+    "NoPermission"
+    {
+        "ru"    "У вас нет доступа к этой команде"
+        "ua"    "У вас немає доступу до цієї команди"
+        "en"    "You don't have access to this command"
+    }
+    "PlayerNotFound"
+    {
+        "ru"    "Игрок не найден"
+        "ua"    "Гравця не знайдено"
+        "en"    "Player not found"
+    }
+    "MultiplePlayers"
+    {
+        "ru"    "Под это имя подходит несколько игроков, уточните"
+        "ua"    "Під це ім'я підходить кілька гравців, уточніть"
+        "en"    "More than one player matches, be more specific"
+    }
+    "InvalidTime"
+    {
+        "ru"    "Неверный срок. Примеры: 30, 2h, 7d, 1w, 0 — навсегда"
+        "ua"    "Невірний термін. Приклади: 30, 2h, 7d, 1w, 0 — назавжди"
+        "en"    "Invalid duration. Examples: 30, 2h, 7d, 1w, 0 for permanent"
+    }
+    "AlreadyPunished"
+    {
+        "ru"    "У игрока уже есть такое наказание"
+        "ua"    "У гравця вже є таке покарання"
+        "en"    "The player already has this punishment"
+    }
+    "PunishBlocked"
+    {
+        "ru"    "Наказание отменено другим плагином"
+        "ua"    "Покарання скасовано іншим плагіном"
+        "en"    "The punishment was blocked by another plugin"
+    }
+    "PlayerPunished"
+    {
+        "ru"    "Наказание выдано"
+        "ua"    "Покарання видано"
+        "en"    "Punishment issued"
+    }
+    "PlayerUnpunished"
+    {
+        "ru"    "Наказание снято"
+        "ua"    "Покарання знято"
+        "en"    "Punishment removed"
+    }
+    "NothingToRemove"
+    {
+        "ru"    "Нет активного наказания, которое вы можете снять"
+        "ua"    "Немає активного покарання, яке ви можете зняти"
+        "en"    "No active punishment you can remove"
+    }
+    "PlayerKicked"
+    {
+        "ru"    "Игрок кикнут"
+        "ua"    "Гравця кікнуто"
+        "en"    "Player kicked"
+    }
+    "CannotGrant"
+    {
+        "ru"    "Нельзя выдать права или иммунитет выше своих"
+        "ua"    "Не можна видати права чи імунітет вищі за свої"
+        "en"    "You can't grant rights or immunity above your own"
+    }
+    "AdminAdded"
+    {
+        "ru"    "Администратор добавлен"
+        "ua"    "Адміністратора додано"
+        "en"    "Admin added"
+    }
+    "AdminRemoved"
+    {
+        "ru"    "Администратор удалён"
+        "ua"    "Адміністратора видалено"
+        "en"    "Admin removed"
+    }
+    "GroupAdded"
+    {
+        "ru"    "Группа добавлена (ID: {id})"
+        "ua"    "Групу додано (ID: {id})"
+        "en"    "Group added (ID: {id})"
+    }
+    "GroupRemoved"
+    {
+        "ru"    "Группа удалена"
+        "ua"    "Групу видалено"
+        "en"    "Group removed"
+    }
+    "ConfigReloaded"
+    {
+        "ru"    "Конфиг и переводы перезагружены"
+        "ua"    "Конфіг і переклади перезавантажено"
+        "en"    "Config and phrases reloaded"
+    }
+    "PlayerReloaded"
+    {
+        "ru"    "Данные игрока перезагружены"
+        "ua"    "Дані гравця перезавантажено"
+        "en"    "Player data reloaded"
+    }
+    "EveryoneReloaded"
+    {
+        "ru"    "Админы и наказания всех игроков перезагружены"
+        "ua"    "Адмінів і покарання всіх гравців перезавантажено"
+        "en"    "Admins and punishments reloaded for all players"
+    }
+    "ConsoleOnly"
+    {
+        "ru"    "Команда доступна только из консоли сервера"
+        "ua"    "Команда доступна лише з консолі сервера"
+        "en"    "This command is server console only"
+    }
+
+    "UsagePunish"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> <срок> [причина]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> <термін> [причина]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> <duration> [reason]"
+    }
+    "UsageUnpunish"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid|ip> [причина]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid|ip> [причина]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid|ip> [reason]"
+    }
+    "UsageBanIp"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ip> <срок> [причина]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <ip> <термін> [причина]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <ip> <duration> [reason]"
+    }
+    "UsageKick"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> [причина]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> [причина]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> [reason]"
+    }
+    "UsageAddAdmin"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> <имя> <флаги> <иммунитет> <срок> [id группы] [комментарий]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> <ім'я> <прапори> <імунітет> <термін> [id групи] [коментар]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> <name> <flags> <immunity> <duration> [group id] [comment]"
+    }
+    "UsageRemoveAdmin"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid>"
+    }
+    "UsageAddGroup"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <название> <флаги> <иммунитет>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <назва> <прапори> <імунітет>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name> <flags> <immunity>"
+    }
+    "UsageRemoveGroup"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <id|название>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <id|назва>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <id|name>"
+    }
+    "UsageSteamId"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <steamid>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <steamid>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <steamid>"
+    }
+
+    "Category_Players"
+    {
+        "ru"    "Управление игроками"
+        "ua"    "Керування гравцями"
+        "en"    "Player commands"
+    }
+    "Category_Server"
+    {
+        "ru"    "Управление сервером"
+        "ua"    "Керування сервером"
+        "en"    "Server commands"
+    }
+    "Item_Kill"
+    {
+        "ru"    "Убить"
+        "ua"    "Вбити"
+        "en"    "Slay"
+    }
+    "Item_Slap"
+    {
+        "ru"    "Шлёпнуть"
+        "ua"    "Ляснути"
+        "en"    "Slap"
+    }
+    "Item_Kick"
+    {
+        "ru"    "Кикнуть"
+        "ua"    "Кікнути"
+        "en"    "Kick"
+    }
+    "Item_Rename"
+    {
+        "ru"    "Переименовать"
+        "ua"    "Перейменувати"
+        "en"    "Rename"
+    }
+    "Item_ChangeTeam"
+    {
+        "ru"    "Перевести в команду"
+        "ua"    "Перевести в команду"
+        "en"    "Move to team"
+    }
+    "Item_Noclip"
+    {
+        "ru"    "Noclip вкл/выкл"
+        "ua"    "Noclip увімк/вимк"
+        "en"    "Toggle noclip"
+    }
+    "Item_Freeze"
+    {
+        "ru"    "Заморозить/разморозить"
+        "ua"    "Заморозити/розморозити"
+        "en"    "Freeze / unfreeze"
+    }
+    "Item_Respawn"
+    {
+        "ru"    "Возродить"
+        "ua"    "Відродити"
+        "en"    "Respawn"
+    }
+    "Item_Who"
+    {
+        "ru"    "Информация об игроке"
+        "ua"    "Інформація про гравця"
+        "en"    "Player info"
+    }
+    "Item_Maps"
+    {
+        "ru"    "Сменить карту"
+        "ua"    "Змінити мапу"
+        "en"    "Change map"
+    }
+    "Item_Restart"
+    {
+        "ru"    "Рестарт игры"
+        "ua"    "Рестарт гри"
+        "en"    "Restart game"
+    }
+    "Item_SwapTeams"
+    {
+        "ru"    "Поменять команды местами"
+        "ua"    "Поміняти команди місцями"
+        "en"    "Swap teams"
+    }
+    "Item_Exec"
+    {
+        "ru"    "Выполнить конфиг"
+        "ua"    "Виконати конфіг"
+        "en"    "Execute config"
+    }
+    "Item_ReloadAdmins"
+    {
+        "ru"    "Перезагрузить админов и наказания"
+        "ua"    "Перезавантажити адмінів і покарання"
+        "en"    "Reload admins and punishments"
+    }
+    "SelectDamage"
+    {
+        "ru"    "Шлёпнуть {target}: урон"
+        "ua"    "Ляснути {target}: шкода"
+        "en"    "Slap {target}: damage"
+    }
+    "SelectTeam"
+    {
+        "ru"    "Куда перевести {target}"
+        "ua"    "Куди перевести {target}"
+        "en"    "Move {target} to"
+    }
+    "SelectMap"
+    {
+        "ru"    "Выберите карту"
+        "ua"    "Оберіть мапу"
+        "en"    "Select map"
+    }
+    "SelectConfig"
+    {
+        "ru"    "Выберите конфиг"
+        "ua"    "Оберіть конфіг"
+        "en"    "Select config"
+    }
+    "NoMaps"
+    {
+        "ru"    "Список карт пуст (maps.ini)"
+        "ua"    "Список мап порожній (maps.ini)"
+        "en"    "Map list is empty (maps.ini)"
+    }
+    "NoConfigs"
+    {
+        "ru"    "Список конфигов пуст (core.ini)"
+        "ua"    "Список конфігів порожній (core.ini)"
+        "en"    "Config list is empty (core.ini)"
+    }
+    "EnterNewName"
+    {
+        "ru"    "Напишите в чат новый ник для {LIGHTRED}{target}"
+        "ua"    "Напишіть у чат новий нік для {LIGHTRED}{target}"
+        "en"    "Type the new name for {LIGHTRED}{target}{DEFAULT} in chat"
+    }
+    "Team_T"
+    {
+        "ru"    "T"
+        "ua"    "T"
+        "en"    "T"
+    }
+    "Team_CT"
+    {
+        "ru"    "CT"
+        "ua"    "CT"
+        "en"    "CT"
+    }
+    "Team_Spectator"
+    {
+        "ru"    "Наблюдатели"
+        "ua"    "Спостерігачі"
+        "en"    "Spectators"
+    }
+    "Action_Kill"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} убил {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вбив {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} slayed {LIGHTRED}{target}"
+    }
+    "Action_Slap"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} шлёпнул {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{damage}{DEFAULT} HP"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} ляснув {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{damage}{DEFAULT} HP"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} slapped {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{damage}{DEFAULT} HP"
+    }
+    "Action_Rename"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} переименовал {LIGHTRED}{target}{DEFAULT} в {LIGHTRED}{name}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} перейменував {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{name}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} renamed {LIGHTRED}{target}{DEFAULT} to {LIGHTRED}{name}"
+    }
+    "Action_Team"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} перевёл {LIGHTRED}{target}{DEFAULT} в {LIGHTRED}{team}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} перевів {LIGHTRED}{target}{DEFAULT} до {LIGHTRED}{team}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} moved {LIGHTRED}{target}{DEFAULT} to {LIGHTRED}{team}"
+    }
+    "Action_NoclipOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил noclip игроку {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув noclip гравцю {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} enabled noclip for {LIGHTRED}{target}"
+    }
+    "Action_NoclipOff"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} выключил noclip игроку {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув noclip гравцю {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} disabled noclip for {LIGHTRED}{target}"
+    }
+    "Action_FreezeOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} заморозил {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{seconds}{DEFAULT} сек."
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} заморозив {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{seconds}{DEFAULT} сек."
+        "en"    "{LIGHTRED}{admin}{DEFAULT} froze {LIGHTRED}{target}{DEFAULT} for {LIGHTRED}{seconds}{DEFAULT}s"
+    }
+    "Action_FreezeOff"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} разморозил {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} розморозив {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} unfroze {LIGHTRED}{target}"
+    }
+    "Action_Respawn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} возродил {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} відродив {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} respawned {LIGHTRED}{target}"
+    }
+    "Action_Map"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} меняет карту на {LIGHTRED}{map}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} змінює мапу на {LIGHTRED}{map}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} is changing the map to {LIGHTRED}{map}"
+    }
+    "Action_Restart"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} перезапустил игру"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} перезапустив гру"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} restarted the game"
+    }
+    "Action_SwapTeams"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} поменял команды местами"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} поміняв команди місцями"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} swapped the teams"
+    }
+    "Action_Exec"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} выполнил конфиг {LIGHTRED}{config}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} виконав конфіг {LIGHTRED}{config}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} executed {LIGHTRED}{config}"
+    }
+    "Who_Header"
+    {
+        "ru"    "Игрок {LIGHTRED}{name}{DEFAULT}, команда {LIGHTRED}{team}"
+        "ua"    "Гравець {LIGHTRED}{name}{DEFAULT}, команда {LIGHTRED}{team}"
+        "en"    "Player {LIGHTRED}{name}{DEFAULT}, team {LIGHTRED}{team}"
+    }
+    "Who_SteamId"
+    {
+        "ru"    "SteamID: {steam2} / {steam64}"
+        "ua"    "SteamID: {steam2} / {steam64}"
+        "en"    "SteamID: {steam2} / {steam64}"
+    }
+    "Who_Admin"
+    {
+        "ru"    "Админ: группа {LIGHTRED}{group}{DEFAULT}, флаги {LIGHTRED}{flags}{DEFAULT}, иммунитет {LIGHTRED}{immunity}"
+        "ua"    "Адмін: група {LIGHTRED}{group}{DEFAULT}, прапори {LIGHTRED}{flags}{DEFAULT}, імунітет {LIGHTRED}{immunity}"
+        "en"    "Admin: group {LIGHTRED}{group}{DEFAULT}, flags {LIGHTRED}{flags}{DEFAULT}, immunity {LIGHTRED}{immunity}"
+    }
+    "Who_Punishment"
+    {
+        "ru"    "{type}: осталось {LIGHTRED}{time}{DEFAULT}, причина: {reason}"
+        "ua"    "{type}: залишилось {LIGHTRED}{time}{DEFAULT}, причина: {reason}"
+        "en"    "{type}: {LIGHTRED}{time}{DEFAULT} left, reason: {reason}"
+    }
+    "Who_Clean"
+    {
+        "ru"    "Активных наказаний нет"
+        "ua"    "Активних покарань немає"
+        "en"    "No active punishments"
+    }
+    "Type_Ban"
+    {
+        "ru"    "Бан"
+        "ua"    "Бан"
+        "en"    "Ban"
+    }
+    "Type_Mute"
+    {
+        "ru"    "Мут"
+        "ua"    "Мут"
+        "en"    "Mute"
+    }
+    "Type_Gag"
+    {
+        "ru"    "Гаг"
+        "ua"    "Гаг"
+        "en"    "Gag"
+    }
+    "Type_Silence"
+    {
+        "ru"    "Сайленс"
+        "ua"    "Сайленс"
+        "en"    "Silence"
+    }
+    "ActionNotPossible"
+    {
+        "ru"    "Сейчас это действие недоступно для этого игрока"
+        "ua"    "Зараз ця дія недоступна для цього гравця"
+        "en"    "This action is not possible for this player right now"
+    }
+    "UsageTarget"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid>"
+    }
+    "UsageSlap"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> [урон]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> [шкода]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> [damage]"
+    }
+    "UsageRename"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> <новый ник>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> <новий нік>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> <new name>"
+    }
+    "UsageTeam"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> <t|ct|spec>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> <t|ct|spec>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> <t|ct|spec>"
+    }
+    "Item_Burn"
+    {
+        "ru"    "Поджечь"
+        "ua"    "Підпалити"
+        "en"    "Burn"
+    }
+    "Item_Health"
+    {
+        "ru"    "Установить HP"
+        "ua"    "Встановити HP"
+        "en"    "Set health"
+    }
+    "Item_Armor"
+    {
+        "ru"    "Установить броню"
+        "ua"    "Встановити броню"
+        "en"    "Set armor"
+    }
+    "Item_Gravity"
+    {
+        "ru"    "Гравитация"
+        "ua"    "Гравітація"
+        "en"    "Gravity"
+    }
+    "Item_Speed"
+    {
+        "ru"    "Скорость"
+        "ua"    "Швидкість"
+        "en"    "Speed"
+    }
+    "Item_God"
+    {
+        "ru"    "Бессмертие вкл/выкл"
+        "ua"    "Безсмертя увімк/вимк"
+        "en"    "Toggle god mode"
+    }
+    "Item_Rcon"
+    {
+        "ru"    "RCON-команда"
+        "ua"    "RCON-команда"
+        "en"    "RCON command"
+    }
+    "Action_Burn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} поджёг {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{seconds}{DEFAULT} сек."
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} підпалив {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{seconds}{DEFAULT} сек."
+        "en"    "{LIGHTRED}{admin}{DEFAULT} set {LIGHTRED}{target}{DEFAULT} on fire for {LIGHTRED}{seconds}{DEFAULT}s"
+    }
+    "Action_Health"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} установил {LIGHTRED}{target}{DEFAULT} {LIGHTRED}{value}{DEFAULT} HP"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} встановив {LIGHTRED}{target}{DEFAULT} {LIGHTRED}{value}{DEFAULT} HP"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} set {LIGHTRED}{target}{DEFAULT} health to {LIGHTRED}{value}"
+    }
+    "Action_Armor"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} установил {LIGHTRED}{target}{DEFAULT} броню {LIGHTRED}{value}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} встановив {LIGHTRED}{target}{DEFAULT} броню {LIGHTRED}{value}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} set {LIGHTRED}{target}{DEFAULT} armor to {LIGHTRED}{value}"
+    }
+    "Action_Gravity"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} изменил гравитацию {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{value}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} змінив гравітацію {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{value}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} set {LIGHTRED}{target}{DEFAULT} gravity to {LIGHTRED}{value}"
+    }
+    "Action_Speed"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} изменил скорость {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{value}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} змінив швидкість {LIGHTRED}{target}{DEFAULT} на {LIGHTRED}{value}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} set {LIGHTRED}{target}{DEFAULT} speed to {LIGHTRED}{value}"
+    }
+    "Action_GodOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} включил бессмертие {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} увімкнув безсмертя {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} enabled god mode for {LIGHTRED}{target}"
+    }
+    "Action_GodOff"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} выключил бессмертие {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} вимкнув безсмертя {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} disabled god mode for {LIGHTRED}{target}"
+    }
+    "EnterRconCommand"
+    {
+        "ru"    "Напишите в чат команду сервера, например {LIGHTRED}mp_roundtime 5"
+        "ua"    "Напишіть у чат команду сервера, наприклад {LIGHTRED}mp_roundtime 5"
+        "en"    "Type a server command in chat, for example {LIGHTRED}mp_roundtime 5"
+    }
+    "RconDone"
+    {
+        "ru"    "Команда выполнена: {LIGHTRED}{command}"
+        "ua"    "Команду виконано: {LIGHTRED}{command}"
+        "en"    "Command executed: {LIGHTRED}{command}"
+    }
+    "Category_Votes"
+    {
+        "ru"    "Голосования"
+        "ua"    "Голосування"
+        "en"    "Voting commands"
+    }
+    "Item_VoteKick"
+    {
+        "ru"    "Голосование за кик"
+        "ua"    "Голосування за кік"
+        "en"    "Vote kick"
+    }
+    "Item_VoteBan"
+    {
+        "ru"    "Голосование за бан"
+        "ua"    "Голосування за бан"
+        "en"    "Vote ban"
+    }
+    "Item_VoteMute"
+    {
+        "ru"    "Голосование за мут"
+        "ua"    "Голосування за мут"
+        "en"    "Vote mute"
+    }
+    "Item_VoteMap"
+    {
+        "ru"    "Голосование за смену карты"
+        "ua"    "Голосування за зміну мапи"
+        "en"    "Vote map"
+    }
+    "Vote_Title_Kick"
+    {
+        "ru"    "Кикнуть {target}?"
+        "ua"    "Кікнути {target}?"
+        "en"    "Kick {target}?"
+    }
+    "Vote_Title_Ban"
+    {
+        "ru"    "Забанить {target} на {time}?"
+        "ua"    "Забанити {target} на {time}?"
+        "en"    "Ban {target} for {time}?"
+    }
+    "Vote_Title_Mute"
+    {
+        "ru"    "Отключить микрофон {target} на {time}?"
+        "ua"    "Вимкнути мікрофон {target} на {time}?"
+        "en"    "Mute {target} for {time}?"
+    }
+    "Vote_Title_Map"
+    {
+        "ru"    "Сменить карту на {map}?"
+        "ua"    "Змінити мапу на {map}?"
+        "en"    "Change the map to {map}?"
+    }
+    "Vote_Yes"
+    {
+        "ru"    "Да"
+        "ua"    "Так"
+        "en"    "Yes"
+    }
+    "Vote_No"
+    {
+        "ru"    "Нет"
+        "ua"    "Ні"
+        "en"    "No"
+    }
+    "Vote_Started"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} начал голосование: {LIGHTRED}{title}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} почав голосування: {LIGHTRED}{title}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} started a vote: {LIGHTRED}{title}"
+    }
+    "Vote_Passed"
+    {
+        "ru"    "Голосование «{title}» {GREEN}прошло{DEFAULT}: за {yes}, против {no}"
+        "ua"    "Голосування «{title}» {GREEN}пройшло{DEFAULT}: за {yes}, проти {no}"
+        "en"    "Vote «{title}» {GREEN}passed{DEFAULT}: {yes} yes, {no} no"
+    }
+    "Vote_Failed"
+    {
+        "ru"    "Голосование «{title}» {LIGHTRED}не прошло{DEFAULT}: за {yes}, против {no}"
+        "ua"    "Голосування «{title}» {LIGHTRED}не пройшло{DEFAULT}: за {yes}, проти {no}"
+        "en"    "Vote «{title}» {LIGHTRED}failed{DEFAULT}: {yes} yes, {no} no"
+    }
+    "VoteAlreadyRunning"
+    {
+        "ru"    "Уже идёт другое голосование"
+        "ua"    "Вже триває інше голосування"
+        "en"    "Another vote is already running"
+    }
+    "VoteReason"
+    {
+        "ru"    "Решение голосования"
+        "ua"    "Рішення голосування"
+        "en"    "Vote result"
+    }
+    "UsageBurn"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> [секунды]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> [секунди]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> [seconds]"
+    }
+    "UsageValue"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> <значение>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> <значення>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> <value>"
+    }
+    "UsageRcon"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <команда сервера>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <команда сервера>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <server command>"
+    }
+    "Item_TimeBomb"
+    {
+        "ru"    "Бомба с таймером"
+        "ua"    "Бомба з таймером"
+        "en"    "Time bomb"
+    }
+    "Item_FireBomb"
+    {
+        "ru"    "Огненная бомба"
+        "ua"    "Вогняна бомба"
+        "en"    "Fire bomb"
+    }
+    "Item_FreezeBomb"
+    {
+        "ru"    "Ледяная бомба"
+        "ua"    "Крижана бомба"
+        "en"    "Freeze bomb"
+    }
+    "Unfreeze"
+    {
+        "ru"    "Разморозить"
+        "ua"    "Розморозити"
+        "en"    "Unfreeze"
+    }
+    "Action_TimeBombOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} превратил {LIGHTRED}{target}{DEFAULT} в бомбу: взрыв через {LIGHTRED}{seconds}{DEFAULT} сек."
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} перетворив {LIGHTRED}{target}{DEFAULT} на бомбу: вибух через {LIGHTRED}{seconds}{DEFAULT} сек."
+        "en"    "{LIGHTRED}{admin}{DEFAULT} turned {LIGHTRED}{target}{DEFAULT} into a bomb: explodes in {LIGHTRED}{seconds}{DEFAULT}s"
+    }
+    "Action_FireBombOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} повесил огненную бомбу на {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT} сек."
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} повісив вогняну бомбу на {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT} сек."
+        "en"    "{LIGHTRED}{admin}{DEFAULT} put a fire bomb on {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT}s"
+    }
+    "Action_FreezeBombOn"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} повесил ледяную бомбу на {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT} сек."
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} повісив крижану бомбу на {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT} сек."
+        "en"    "{LIGHTRED}{admin}{DEFAULT} put a freeze bomb on {LIGHTRED}{target}{DEFAULT}: {LIGHTRED}{seconds}{DEFAULT}s"
+    }
+    "Action_BombOff"
+    {
+        "ru"    "{LIGHTRED}{admin}{DEFAULT} обезвредил бомбу на {LIGHTRED}{target}"
+        "ua"    "{LIGHTRED}{admin}{DEFAULT} знешкодив бомбу на {LIGHTRED}{target}"
+        "en"    "{LIGHTRED}{admin}{DEFAULT} defused the bomb on {LIGHTRED}{target}"
+    }
+    "Bomb_Countdown"
+    {
+        "ru"    "Ты бомба! Осталось {seconds} сек."
+        "ua"    "Ти бомба! Залишилось {seconds} сек."
+        "en"    "You are a bomb! {seconds}s left"
+    }
+    "Bomb_Detonated"
+    {
+        "ru"    "Бомба на {LIGHTRED}{target}{DEFAULT} сработала"
+        "ua"    "Бомба на {LIGHTRED}{target}{DEFAULT} спрацювала"
+        "en"    "The bomb on {LIGHTRED}{target}{DEFAULT} went off"
+    }
+    "UsageFreeze"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <ник|#слот|steamid> [секунды, 0 — разморозить]"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <нік|#слот|steamid> [секунди, 0 — розморозити]"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <name|#slot|steamid> [seconds, 0 unfreezes]"
+    }
+    "UsageMap"
+    {
+        "ru"    "Использование: {LIGHTRED}{command}{DEFAULT} <карта|id из мастерской>"
+        "ua"    "Використання: {LIGHTRED}{command}{DEFAULT} <мапа|id з майстерні>"
+        "en"    "Usage: {LIGHTRED}{command}{DEFAULT} <map|workshop id>"
+    }
+    "PanelMessage"
+    {
+        "ru"    "{LIGHTRED}[{admin}]{DEFAULT} {text}"
+        "ua"    "{LIGHTRED}[{admin}]{DEFAULT} {text}"
+        "en"    "{LIGHTRED}[{admin}]{DEFAULT} {text}"
+    }
+    "PanelPrivateMessage"
+    {
+        "ru"    "{LIGHTRED}[{admin} → вам]{DEFAULT} {text}"
+        "ua"    "{LIGHTRED}[{admin} → вам]{DEFAULT} {text}"
+        "en"    "{LIGHTRED}[{admin} → you]{DEFAULT} {text}"
+    }
+}

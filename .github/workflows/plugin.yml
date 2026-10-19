@@ -1,0 +1,71 @@
+name: Plugin
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.steamos.cloud/steamrt/sniper/sdk:latest
+
+    env:
+      EXTERNAL: ${{ github.workspace }}/external
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependencies
+        run: |
+          apt-get update
+          apt-get install -y python3-pip
+          git clone --depth 1 https://github.com/alliedmodders/ambuild.git "$EXTERNAL/ambuild"
+          python3 -m pip install "$EXTERNAL/ambuild"
+          git clone --recursive --branch master --single-branch https://github.com/alliedmodders/metamod-source.git "$EXTERNAL/metamod-source"
+          git clone --recursive --branch cs2 --single-branch https://github.com/alliedmodders/hl2sdk.git "$EXTERNAL/hl2sdk-cs2"
+
+      - name: Build
+        run: |
+          mkdir -p build
+          cd build
+          CC=clang CXX=clang++ python3 ../configure.py -s cs2 --targets x86_64 --enable-optimize \
+            --hl2sdk-manifests="$EXTERNAL/metamod-source/hl2sdk-manifests" \
+            --mms_path="$EXTERNAL/metamod-source" \
+            --hl2sdk-root="$EXTERNAL"
+          ambuild
+
+      - name: Check glibc
+        working-directory: build/package/addons/verdict
+        run: objdump -T verdict.so | grep -oE 'GLIBC_[0-9.]+' | sort -Vu | tail -3
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verdict
+          path: build/package/addons
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: verdict
+          path: package/addons
+
+      - name: Archive
+        run: |
+          cd package
+          zip -r ../verdict-linux.zip addons
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: verdict-linux.zip
+          generate_release_notes: true

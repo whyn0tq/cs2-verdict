@@ -1,0 +1,84 @@
+import os
+
+class ProtocHeadersOnlyTool(object):
+  def evaluate(self, cmd):
+    gen_map = cmd.data.protoc.Generate(builder = cmd.context,
+                                       sources = cmd.data.sources,
+                                       outputs = [('cpp', cmd.localFolderNode)])
+    cmd.sourcedeps += gen_map['cpp']['sources']
+    cmd.sourcedeps += gen_map['cpp']['headers']
+    for source in gen_map['cpp']['sources']:
+      if os.path.basename(source.path) in cmd.data.compile_only:
+        cmd.sources += [os.path.join(cmd.context.buildPath, source.path)]
+
+class ProtocHeadersOnlyJob(object):
+  def __init__(self, protoc, sources, compile_only):
+    self.protoc = protoc.clone()
+    self.sources = sources[:]
+    self.compile_only = set(compile_only)
+    self.tool = ProtocHeadersOnlyTool()
+
+
+for sdk_target in MMSPlugin.sdk_targets:
+  sdk = sdk_target.sdk
+  cxx = sdk_target.cxx
+
+  cxx.cxxflags += ['-Wno-invalid-offsetof', '-Wno-reorder-ctor']
+  if cxx.target.platform == 'linux':
+    cxx.defines += [
+      'bswap_16=__builtin_bswap16',
+      'bswap_32=__builtin_bswap32',
+      'bswap_64=__builtin_bswap64',
+    ]
+  binary = MMSPlugin.HL2Library(builder, cxx, MMSPlugin.plugin_name, sdk)
+
+  proto_dir = os.path.join(sdk['path'], 'thirdparty', 'game_protobufs', 'csgo')
+  if not os.path.isdir(proto_dir):
+    proto_dir = os.path.join(sdk['path'], 'common')
+  proto_sources = [
+    os.path.join(proto_dir, f) for f in [
+      'valveextensions.proto',
+      'network_connection.proto',
+      'networkbasetypes.proto',
+      'netmessages.proto',
+      'source2_steam_stats.proto',
+    ]
+  ]
+  binary.custom = [ProtocHeadersOnlyJob(sdk_target.protoc, proto_sources, ['network_connection.pb.cc'])]
+
+  binary.compiler.cxxincludes += [
+    os.path.join(builder.sourcePath, 'src'),
+    os.path.join(builder.sourcePath, 'include'),
+    os.path.join(builder.sourcePath, 'third_party'),
+    os.path.join(sdk['path'], 'public', 'tier1'),
+    os.path.join(sdk['path'], 'public', 'game', 'server'),
+    os.path.join(MMSPlugin.mms_root, 'third_party', 'khook', 'include'),
+    os.path.join(MMSPlugin.mms_root, 'third_party', 'amtl'),
+  ]
+
+  binary.sources += [
+    'src/plugin.cpp',
+    'src/panel_link.cpp',
+    'src/api.cpp',
+    'src/settings.cpp',
+    'src/phrases.cpp',
+    'src/steam.cpp',
+    'src/clients.cpp',
+    'src/storage.cpp',
+    'src/admins.cpp',
+    'src/punishments.cpp',
+    'src/admin_menu.cpp',
+    'src/commands.cpp',
+    'src/migration.cpp',
+    'src/entities.cpp',
+    'src/player_actions.cpp',
+    'src/server_actions.cpp',
+    'src/management_menu.cpp',
+    'src/votes.cpp',
+    'src/effects.cpp',
+  ]
+
+  if cxx.target.arch == 'x86':
+    binary.sources += ['sourcehook/sourcehook_hookmangen.cpp']
+  nodes = builder.Add(binary)
+  MMSPlugin.binaries += [nodes]
