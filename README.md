@@ -1,235 +1,133 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="Verdict" width="100%">
+<h1 align="center">Verdict</h1>
 
-![CS2](https://img.shields.io/badge/CS2-Linux%20x64-e5383b?style=for-the-badge&labelColor=16161a) ![Metamod](https://img.shields.io/badge/Metamod:Source-2.0-e5383b?style=for-the-badge&labelColor=16161a) ![C++](https://img.shields.io/badge/plugin-C%2B%2B-e5383b?style=for-the-badge&labelColor=16161a) ![DB](https://img.shields.io/badge/MySQL%20%2F%20MariaDB-ready-e5383b?style=for-the-badge&labelColor=16161a)
+<p align="center">
+  <img src="https://img.shields.io/badge/CS2-0d1117?style=for-the-badge" alt="CS2">
+  <img src="https://img.shields.io/badge/LINUX_X64-e5383b?style=for-the-badge" alt="Linux x64">
+  <img src="https://img.shields.io/badge/METAMOD:SOURCE-0d1117?style=for-the-badge" alt="Metamod:Source">
+  <img src="https://img.shields.io/badge/BUILD_1483%2B-e5383b?style=for-the-badge" alt="Build 1483+">
+  <img src="https://img.shields.io/badge/PLUGIN-0d1117?style=for-the-badge" alt="Plugin">
+  <img src="https://img.shields.io/badge/C%2B%2B-e5383b?style=for-the-badge" alt="C++">
+  <img src="https://img.shields.io/badge/MYSQL_%2F_MARIADB-0d1117?style=for-the-badge" alt="MySQL / MariaDB">
+  <img src="https://img.shields.io/badge/READY-e5383b?style=for-the-badge" alt="Ready">
+</p>
 
-**English** · [Русский](README.ru.md)
-
-[Features](#features) · [Installation](#installation) · [Commands](#commands) · [Flags](#admin-flags) · [Web panel](#web-panel) · [Build](#build)
-
+<p align="center"><b>English</b> · <a href="README.ru.md">Русский</a></p>
 </div>
 
-Replaces **cs2-admin_system** and the server side of **Material Admin**. The web panel, [**Verdict Web**](https://github.com/whyn0tq/cs2-verdict-web), is a separate repository: the panel and the plugin share one database and talk only through it.
+Metamod:Source plugin for CS2: bans, mutes and admins. Replaces **cs2-admin_system** and the server side of **Material Admin**.
 
-- **No new database.** Runs on the Material Admin schema (`sb_bans`, `sb_comms`, `sb_admins`, `sb_srvgroups`, `sb_servers`). An old MA database plugs in as is.
-- **Modules keep working.** Exposes the same `IAdminApi` as cs2-admin_system, so admin_system, VIP, LR and other modules need no rebuild.
-- **Easy migration.** Configs use the admin_system format; data moves over with `vd_import`.
+- **Material Admin schema.** Tables `sb_bans`, `sb_comms`, `sb_admins`, `sb_srvgroups`, `sb_servers`. An old MA database from CS:GO can be connected as is.
+- **admin_system compatible.** Exposes the same `IAdminApi`: VIP, LR and other modules work without a rebuild. Configs use the admin_system format, `core.ini` carries over almost unchanged.
+- **[Web panel](https://github.com/whyn0tq/cs2-verdict-web)** — PHP 5.2+, runs on ordinary hosting and shares the same database.
 
 ## Features
 
-- Bans by SteamID and IP, including offline players
-- Mutes, gags and silence
-- Admins with flags, immunity, groups, expiry and per-server binding
-- Per-group limits on ban and mute duration
-- `!admin` menu for players and server management
-- Votes: kick, ban, mute, map
-- Player tools: slay, slap, burn, bombs, freeze, team, noclip, god, HP, armor, gravity, speed
-- Map change (workshop too), restart, swap teams, config exec, RCON
-- Many servers on one database, shared or separate admins and bans
-- Languages: English, Russian, Ukrainian
+| | |
+|---|---|
+| Punishments | ban by SteamID and IP (including offline), mute, gag, kick |
+| Admins | flags, immunity, groups, expiry, per-server binding, group limits on ban and mute duration |
+| Player control | slay, slap, burn, timebomb, firebomb, freezebomb, freeze, respawn, team, rename, noclip, god, hp, armor, speed, gravity |
+| Server | map change (including workshop), restart, swap teams, exec configs, RCON |
+| Votes | kick, ban, mute, map change |
+| Other | `!admin` menu, several servers on one database, migration from admin_system (`vd_import`), ru / en / uk languages |
 
 ## Requirements
 
-| What | Where |
+| What | Where to get it |
 |---|---|
-| CS2 server on **Linux** x86_64 | — |
-| Metamod:Source **2.0** (dev build) | [metamodsource.net](https://www.metamodsource.net/downloads.php?branch=dev) |
+| Metamod:Source 2.0 (build 1483+) | [metamodsource.net](https://www.metamodsource.net/downloads.php?branch=dev) |
 | cs2-menus (`utils.zip`) | [Pisex/cs2-menus](https://github.com/Pisex/cs2-menus/releases) |
 | sql_mm (`sql_mm-linux-*.tar.gz`) | [zer0k-z/sql_mm](https://github.com/zer0k-z/sql_mm/releases) |
-| MySQL 8 or MariaDB 10.6+ | your hosting panel |
-
-All paths are relative to the server folder that contains `game/csgo/`.
+| MySQL 8 / MariaDB 10.6+ | hosting control panel |
 
 ## Installation
 
-**1. Metamod.** Extract Metamod 2.0 into `game/csgo/`, then add this line to `game/csgo/gameinfo.gi` inside `SearchPaths`, **before** `Game csgo`:
+1. Remove cs2-admin_system if installed: the `addons/admin_system/` folder and `addons/metamod/admin_system.vdf` (two `IAdminApi` providers cannot run together; keep `addons/translations/admin_system.phrases.txt` — Verdict reads it for modules).
+2. Create an empty database — Verdict creates its tables itself. In `addons/configs/databases.cfg` (copy it from `databases.cfg.example` if missing) add a section:
 
-```
-Game    csgo/addons/metamod
-```
+   ```
+   "Databases"
+   {
+       "verdict"
+       {
+           "host"      "127.0.0.1"
+           "user"      "verdict"
+           "pass"      "password"
+           "database"  "verdict"
+           "port"      "3306"
+       }
+   }
+   ```
 
-CS2 updates overwrite `gameinfo.gi` — re-add the line after each update. Check with `meta version` in the server console.
+   Leave other plugins' sections (`vip`, `lr`…) alone. Without a `verdict` section the plugin falls back to `admin_system`, then `materialadmin`.
+3. Restart the server. The console should print `[Verdict] Database ready, server id 0`, and `meta list` should show Verdict.
+4. Add an admin from the server console:
 
-**2. Dependencies.** Extract `utils.zip` (cs2-menus) and the sql_mm archive into `game/csgo/`.
+   ```
+   vd_add_admin 76561198000000000 "Name" z 100 0
+   ```
 
-**3. Verdict.** Remove cs2-admin_system if installed (`addons/admin_system/` and `addons/metamod/admin_system.vdf`; keep `admin_system.phrases.txt`). Download `verdict-linux.zip` from *Releases* and copy its `addons` folder into `game/csgo/`.
-
-**4. Database.** Create a database, then put its details into `addons/configs/databases.cfg` (rename `databases.cfg.example` if the file is missing). Tables are created automatically.
-
-```
-"Databases"
-{
-    "verdict"
-    {
-        "host"      "127.0.0.1"
-        "user"      "verdict"
-        "pass"      "password"
-        "database"  "verdict"
-        "port"      "3306"
-    }
-}
-```
-
-If there is no `verdict` section, the plugin falls back to `admin_system` or `materialadmin`.
-
-**5. Check.** Restart the server. The console should print `[Verdict] Database ready`, and `meta list` should show Verdict.
-
-**6. First admin.** Run in the server console or via RCON:
-
-```
-vd_add_admin <steamid64> "Nick" z 100 0
-```
-
-`z` — full access, `100` — immunity, `0` — permanent. Then type `!admin` in chat.
+   `z` — full access, `100` — immunity, `0` — permanent.
 
 ## Commands
 
-`!admin` opens the menu. In the server console and RCON, commands start with `vd_` (`vd_ban`); in chat, with `!` (`!ban`). **Access** is the permission a player needs.
+Use the `vd_` prefix in the console and RCON, `!` in chat. Access is controlled by admin flags.
 
-`<target>` is a name, `#slot` or SteamID. `<duration>` is a number with an optional unit: `s`, `m` (default), `h`, `d`, `w` — for example `30`, `2h`, `7d`; `0` is permanent.
-
-### Punishments
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>ban</code></td><td><code>&lt;target&gt; &lt;duration&gt; [reason]</code></td><td><code>@admin/ban</code></td></tr>
-<tr><td><code>banip</code></td><td><code>&lt;ip&gt; &lt;duration&gt; [reason]</code></td><td><code>@admin/ban</code></td></tr>
-<tr><td><code>mute</code></td><td><code>&lt;target&gt; &lt;duration&gt; [reason]</code></td><td><code>@admin/mute</code></td></tr>
-<tr><td><code>gag</code></td><td><code>&lt;target&gt; &lt;duration&gt; [reason]</code></td><td><code>@admin/gag</code></td></tr>
-<tr><td><code>silence</code></td><td><code>&lt;target&gt; &lt;duration&gt; [reason]</code></td><td><code>@admin/silence</code></td></tr>
-<tr><td><code>unban</code></td><td><code>&lt;target|ip&gt; [reason]</code></td><td><code>@admin/unban</code></td></tr>
-<tr><td><code>unmute</code></td><td><code>&lt;target&gt; [reason]</code></td><td><code>@admin/unmute</code></td></tr>
-<tr><td><code>ungag</code></td><td><code>&lt;target&gt; [reason]</code></td><td><code>@admin/ungag</code></td></tr>
-<tr><td><code>unsilence</code></td><td><code>&lt;target&gt; [reason]</code></td><td><code>@admin/unsilence</code></td></tr>
-<tr><td><code>kick</code></td><td><code>&lt;target&gt; [reason]</code></td><td><code>@admin/kick</code></td></tr>
-</table>
-
-### Players
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>slay</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/kill</code></td></tr>
-<tr><td><code>slap</code></td><td><code>&lt;target&gt; [damage]</code></td><td><code>@admin/slap</code></td></tr>
-<tr><td><code>burn</code></td><td><code>&lt;target&gt; [seconds]</code></td><td><code>@admin/burn</code></td></tr>
-<tr><td><code>freeze</code></td><td><code>&lt;target&gt; [seconds]</code> — 0 unfreezes</td><td><code>@admin/freeze</code></td></tr>
-<tr><td><code>timebomb</code></td><td><code>&lt;target&gt;</code> — toggle</td><td><code>@admin/timebomb</code></td></tr>
-<tr><td><code>firebomb</code></td><td><code>&lt;target&gt;</code> — toggle</td><td><code>@admin/firebomb</code></td></tr>
-<tr><td><code>freezebomb</code></td><td><code>&lt;target&gt;</code> — toggle</td><td><code>@admin/freezebomb</code></td></tr>
-<tr><td><code>respawn</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/respawn</code></td></tr>
-<tr><td><code>rename</code></td><td><code>&lt;target&gt; &lt;new name&gt;</code></td><td><code>@admin/rename</code></td></tr>
-<tr><td><code>team</code></td><td><code>&lt;target&gt; &lt;t|ct|spec&gt;</code></td><td><code>@admin/changeteam</code></td></tr>
-<tr><td><code>noclip</code></td><td><code>&lt;target&gt;</code> — toggle</td><td><code>@admin/noclip</code></td></tr>
-<tr><td><code>god</code></td><td><code>&lt;target&gt;</code> — toggle</td><td><code>@admin/god</code></td></tr>
-<tr><td><code>hp</code></td><td><code>&lt;target&gt; &lt;value&gt;</code></td><td><code>@admin/hp</code></td></tr>
-<tr><td><code>armor</code></td><td><code>&lt;target&gt; &lt;value&gt;</code></td><td><code>@admin/armor</code></td></tr>
-<tr><td><code>speed</code></td><td><code>&lt;target&gt; &lt;value&gt;</code></td><td><code>@admin/speed</code></td></tr>
-<tr><td><code>gravity</code></td><td><code>&lt;target&gt; &lt;value&gt;</code></td><td><code>@admin/gravity</code></td></tr>
-<tr><td><code>who</code></td><td><code>[target]</code> — player info, yourself if omitted</td><td><code>@admin/who</code></td></tr>
-</table>
-
-### Server
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>map</code></td><td><code>&lt;map|workshop id&gt;</code></td><td><code>@admin/maps</code></td></tr>
-<tr><td><code>restart</code></td><td>—</td><td><code>@admin/restart</code></td></tr>
-<tr><td><code>swapteams</code></td><td>—</td><td><code>@admin/swapteams</code></td></tr>
-<tr><td><code>rcon</code></td><td><code>&lt;server command&gt;</code></td><td><code>@admin/rcon</code></td></tr>
-</table>
-
-### Votes
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>votekick</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/vote</code></td></tr>
-<tr><td><code>voteban</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/vote</code></td></tr>
-<tr><td><code>votemute</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/vote</code></td></tr>
-<tr><td><code>votemap</code></td><td><code>&lt;map|workshop id&gt;</code></td><td><code>@admin/vote</code></td></tr>
-</table>
-
-### Admins and groups
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>add_admin</code></td><td><code>&lt;target&gt; &lt;name&gt; &lt;flags&gt; &lt;immunity&gt; &lt;duration&gt; [group id] [comment]</code></td><td><code>@admin/add_admin</code></td></tr>
-<tr><td><code>remove_admin</code></td><td><code>&lt;target&gt;</code></td><td><code>@admin/remove_admin</code></td></tr>
-<tr><td><code>add_group</code></td><td><code>&lt;name&gt; &lt;flags&gt; &lt;immunity&gt;</code></td><td><code>@admin/add_group</code></td></tr>
-<tr><td><code>remove_group</code></td><td><code>&lt;id|name&gt;</code></td><td><code>@admin/remove_group</code></td></tr>
-</table>
-
-### Maintenance
-
-<table width="100%">
-<tr><th width="20%" align="left">Command</th><th width="55%" align="left">Usage</th><th width="25%" align="left">Access</th></tr>
-<tr><td><code>vd_reload</code></td><td>reload config and phrases</td><td><code>@admin/reload_config</code></td></tr>
-<tr><td><code>vd_reload_admin</code></td><td><code>&lt;target&gt;</code> — reload an online player's admin rights</td><td><code>@admin/reload_admin</code></td></tr>
-<tr><td><code>vd_reload_punish</code></td><td><code>&lt;target&gt;</code> — reload an online player's punishments</td><td><code>@admin/reload_punish</code></td></tr>
-<tr><td><code>vd_sync</code></td><td><code>[steamid]</code> — reload admins and punishments for everyone or one player</td><td><code>@admin/reload_admin</code></td></tr>
-<tr><td><code>vd_import</code></td><td><code>as_</code> — import data from cs2-admin_system</td><td>console</td></tr>
-</table>
-
-## Admin flags
-
-Defaults from `core.ini`, fully editable.
-
-| Flag | Name | Flag | Name |
-|---|---|---|---|
-| `a` | Reserved slot | `j` | Chat and voice (mute, gag, silence) |
-| `b` | Basic access | `k` | Votes |
-| `c` | Kick | `m` | RCON |
-| `d` | Ban | `n` | Cheat commands (noclip, god, hp, armor, speed, gravity) |
-| `e` | Unban | `z` | ROOT |
-| `f` | Player management | | |
-| `g` | Maps, restart, swap teams | | |
-| `i` | Configs | | |
-
-## Web panel
-
-[**Verdict Web**](https://github.com/whyn0tq/cs2-verdict-web) is a separate PHP + MySQL panel. Download it from the [repository](https://github.com/whyn0tq/cs2-verdict-web) (*Code* → *Download ZIP* or *Releases*) and upload it to any regular web hosting. Set `server_id` in `core.ini` and the plugin publishes online players, chat and events to the shared database and runs panel actions (kick, move, slay, chat messages). Bans, mutes and admins issued in the panel apply without a restart.
-
-## Troubleshooting
-
-| Problem | Fix |
+| Command | Arguments |
 |---|---|
-| Verdict missing from `meta list` | Re-add `Game csgo/addons/metamod` to `gameinfo.gi` |
-| Conflicts with admin_system | Remove admin_system — two `IAdminApi` plugins cannot run together |
-| Cannot connect to the database | Check `databases.cfg`; allow remote access for the game server IP |
-| Menu does not open | Install cs2-menus and make sure it loads |
-| `verdict.so` fails to load | Use the release archive or build in the Steam Runtime sniper container |
+| `ban` `mute` `gag` `silence` | `<name\|#slot\|steamid> <duration> [reason]` |
+| `unban` `unmute` `ungag` `unsilence` | `<name\|#slot\|steamid\|ip> [reason]` |
+| `banip` | `<ip> <duration> [reason]` |
+| `kick` | `<name\|#slot\|steamid> [reason]` |
+| `add_admin` | `<target> <name> <flags> <immunity> <duration> [group id] [comment]` |
+| `remove_admin` | `<target>` |
+| `add_group` / `remove_group` | `<name> <flags> <immunity>` / `<id\|name>` |
+| `slay` `noclip` `respawn` `god` `timebomb` `firebomb` `freezebomb` | `<target>` |
+| `slap` | `<target> [damage]` |
+| `burn` | `<target> [seconds]` |
+| `freeze` | `<target> [seconds]`, `0` — unfreeze |
+| `hp` `armor` `speed` `gravity` | `<target> <value>` |
+| `team` | `<target> <t\|ct\|spec>` |
+| `rename` | `<target> <new name>` |
+| `map` / `votemap` | `<map\|workshop id>` |
+| `votekick` `voteban` `votemute` | `<target>` |
+| `restart` `swapteams` `who` | — |
+| `rcon` | `<command>` |
+| `reload` `reload_admin` `reload_punish` `sync` | reload config / admins / punishments, sync with the database |
+| `import` | `[table prefix]`, default `as_`. Console only: imports admins, groups and punishments from cs2-admin_system tables in the same database |
 
-## Build
+**Duration** is in minutes, `0` — permanent.
 
-Requires Linux x86_64, clang, Python 3 and [AMBuild](https://github.com/alliedmodders/ambuild).
+## Configs
 
-```bash
-git clone https://github.com/alliedmodders/ambuild.git
-python3 -m pip install ./ambuild
-git clone --recursive --branch master https://github.com/alliedmodders/metamod-source.git
-git clone --recursive --branch cs2 https://github.com/alliedmodders/hl2sdk.git hl2sdk-cs2
+`addons/configs/verdict/`:
 
-mkdir build && cd build
-CC=clang CXX=clang++ python3 ../configure.py -s cs2 --targets x86_64 --enable-optimize \
-  --hl2sdk-manifests=<metamod-source>/hl2sdk-manifests \
-  --mms_path=<metamod-source> \
-  --hl2sdk-root=<folder containing hl2sdk-cs2>
-ambuild
-```
+- `core.ini` — table prefix (`database_prefix`, default `sb`), `server_id`, chat prefix, punishment mode (`punish_scope`, `punish_ip`), vote settings, effects, the list of configs for `exec`, flag definitions, ban and mute reasons and durations.
+- `sorting.ini` — menu item order.
+- `maps.ini` — map list for map change and votes.
 
-The `addons` folder appears in `build/package/`. Release builds run in GitHub Actions ([`plugin.yml`](.github/workflows/plugin.yml)) inside the Steam Runtime sniper container, so `verdict.so` does not require a newer glibc than your server has.
+Admin flags (defaults from `core.ini`):
 
-```
-src/            plugin code
-include/        admin.h (IAdminApi), verdict.h (IVerdictApi)
-configs/        core.ini, sorting.ini, maps.ini, databases.cfg.example
-translations/   verdict.phrases.txt
-third_party/    cs2-menus and sql_mm headers, unmodified
-```
+| Flag | Access |
+|---|---|
+| `a` | reserved slot |
+| `b` | `status`, `who`, admin list, admin chat |
+| `c` | `kick` |
+| `d` | `ban`, custom reason text |
+| `e` | `unban` |
+| `f` | `slay`, `slap`, `burn`, `timebomb`, `firebomb`, `freezebomb`, `freeze`, `rename`, `team`, `respawn` |
+| `g` | `map`, `restart`, `swapteams` |
+| `i` | `reload`, exec configs |
+| `j` | `mute`, `gag`, `silence` and their removal |
+| `k` | votes: `votekick`, `voteban`, `votemute`, `votemap` |
+| `m` | `rcon` |
+| `n` | `noclip`, `god`, `hp`, `armor`, `speed`, `gravity` |
+| `z` | ROOT — full access |
 
----
+Several servers on one database: each has its own `server_id`; bans and admins are either shared or separate, controlled by `punish_scope`.
 
-<div align="center">
+## Author
 
-Author: **teesa** ([whyn0tq](https://github.com/whyn0tq))
-
-</div>
+**teesa (whyn0tq)** · [GitHub](https://github.com/whyn0tq)
