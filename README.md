@@ -38,7 +38,7 @@ Metamod:Source plugin for CS2: bans, mutes and admins. Replaces **cs2-admin_syst
 | What | Where to get it |
 |---|---|
 | Metamod:Source 2.0 (build 1483+) | [metamodsource.net](https://www.metamodsource.net/downloads.php?branch=dev) |
-| cs2-menus (`utils.zip`) | [Pisex/cs2-menus](https://github.com/Pisex/cs2-menus/releases) |
+| cs2-menus (`utils.zip`) | [Pisex/cs2-menus](https://github.com/whyn0tq/cs2-menus/releases) |
 | sql_mm (`sql_mm-linux-*.tar.gz`) | [zer0k-z/sql_mm](https://github.com/zer0k-z/sql_mm/releases) |
 | MySQL 8 / MariaDB 10.6+ | hosting control panel |
 
