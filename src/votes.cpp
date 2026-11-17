@@ -123,7 +123,7 @@ static void ShowBallot(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, false);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item >= 7 || !back || !IsValidSlot(slot))
             return;
 
@@ -236,7 +236,7 @@ static void ShowVoteTargets(int slot, int type)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [type](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [type](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowCategory(slot, "votes");
@@ -273,7 +273,7 @@ static void ShowVoteMaps(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowCategory(slot, "votes");

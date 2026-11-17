@@ -245,7 +245,7 @@ static void ShowValueMenu(int slot, int action, int targetSlot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [action](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [action](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowActionTargets(slot, action);
@@ -288,7 +288,7 @@ static void ShowTeamChoice(int slot, int targetSlot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowActionTargets(slot, ActionTeam);
@@ -426,7 +426,7 @@ static void ShowActionTargets(int slot, int action)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [action](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [action](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowCategory(slot, "players");
@@ -459,7 +459,7 @@ static void ShowOptionsMenu(int slot, const char* titleKey, const std::vector<Na
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [isMaps](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [isMaps](const char* back, const char* front, int item, int slot) {
         if (item == 7)
         {
             ShowCategory(slot, "server");

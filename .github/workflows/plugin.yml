@@ -34,6 +34,9 @@ jobs:
           clang++ -std=c++17 -D_GLIBCXX_USE_CXX11_ABI=0 -Wall -Wextra -Werror \
             -Isrc -Ithird_party src/database.cpp tests/database_test.cpp -o build/database-tests
           build/database-tests
+          clang++ -std=c++17 -D_GLIBCXX_USE_CXX11_ABI=0 -Wall -Wextra -Werror -fsanitize=address \
+            -Isrc -Ithird_party tests/menu_callback_test.cpp -o build/menu-tests
+          build/menu-tests
 
       - name: Build
         run: |

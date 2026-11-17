@@ -361,7 +361,7 @@ const char* Verdict::GetLicense()
 
 const char* Verdict::GetVersion()
 {
-    return "1.1.0";
+    return "1.1.1";
 }
 
 const char* Verdict::GetDate()

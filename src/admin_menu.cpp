@@ -2,6 +2,7 @@
 #include "admins.h"
 #include "api.h"
 #include "clients.h"
+#include "menu_callback.h"
 #include "phrases.h"
 #include "punishments.h"
 #include "settings.h"
@@ -55,6 +56,11 @@ static void ShowPunishTypes(int slot, bool offline);
 static void ShowUnpunishTypes(int slot, bool offline);
 static void ShowReasons(int slot);
 static void ShowTimes(int slot);
+
+void SetMenuCallback(Menu& menu, MenuCallbackFunc callback)
+{
+    g_pMenus->SetCallback(menu, WrapMenuCallback(std::move(callback)));
+}
 
 static std::vector<std::string> SplitPermissions(const std::string& text)
 {
@@ -179,7 +185,7 @@ bool ShowAdminMenu(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, false);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item >= 7 || !back || !back[0])
             return;
         g_LastCategory[slot] = back;
@@ -221,7 +227,7 @@ void ShowCategory(int slot, const std::string& identity)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             if (back && back[0])
@@ -300,7 +306,7 @@ static void ShowPunishTargets(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             int target = atoi(back);
@@ -343,7 +349,7 @@ static void ShowOfflineTargets(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             uint64 steamId = 0;
@@ -376,7 +382,7 @@ static void ShowPunishTypes(int slot, bool offline)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [offline](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [offline](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             PunishDraft& draft = g_Drafts[slot];
@@ -434,7 +440,7 @@ static void ShowReasons(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         PunishDraft& draft = g_Drafts[slot];
         if (item < 7)
         {
@@ -523,7 +529,7 @@ static void ShowTimes(int slot)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             g_pMenus->ClosePlayerMenu(slot);
@@ -577,7 +583,7 @@ static void ShowUnpunishTargets(int slot, int type)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [type](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [type](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             int target = atoi(back);
@@ -648,7 +654,7 @@ static void ShowOfflineUnpunishTargets(int slot, int type)
 
         g_pMenus->SetExitMenu(menu, true);
         g_pMenus->SetBackMenu(menu, true);
-        g_pMenus->SetCallback(menu, [type](const char* back, const char* front, int item, int slot) {
+        SetMenuCallback(menu, [type](const char* back, const char* front, int item, int slot) {
             if (item < 7)
             {
                 uint64 steamId = 0;
@@ -679,7 +685,7 @@ static void ShowUnpunishTypes(int slot, bool offline)
 
     g_pMenus->SetExitMenu(menu, true);
     g_pMenus->SetBackMenu(menu, true);
-    g_pMenus->SetCallback(menu, [offline](const char* back, const char* front, int item, int slot) {
+    SetMenuCallback(menu, [offline](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
             if (offline)

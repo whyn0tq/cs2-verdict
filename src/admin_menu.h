@@ -3,7 +3,9 @@
 #include <ISmmPlugin.h>
 #include <string>
 #include "admin.h"
+#include "menus.h"
 
+void SetMenuCallback(Menu& menu, MenuCallbackFunc callback);
 void RegisterMenuCategory(const char* identity, const char* name, OnCategoryDisplayCallback callback);
 void RegisterMenuItem(const char* identity, const char* name, const char* category, const char* permissions, OnItemDisplayCallback onDisplay, OnItemSelectCallback onSelect);
 void RegisterCoreMenuItems();
