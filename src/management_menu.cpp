@@ -8,7 +8,6 @@
 #include "punishments.h"
 #include "server_actions.h"
 #include "settings.h"
-#include "steam.h"
 #include "common.h"
 
 enum PlayerAction
@@ -135,22 +134,6 @@ static bool FitsAction(int adminSlot, int targetSlot, int action)
     return true;
 }
 
-static std::string TargetBack(int targetSlot)
-{
-    return std::to_string(targetSlot) + ":" + SteamIdToText(ClientSteamId(targetSlot));
-}
-
-static int TargetFromBack(const std::string& text)
-{
-    size_t colon = text.find(':');
-    if (colon == std::string::npos)
-        return -1;
-
-    int slot = atoi(text.substr(0, colon).c_str());
-    uint64 steamId = strtoull(text.substr(colon + 1).c_str(), nullptr, 10);
-    return IsSameClient(slot, steamId) ? slot : -1;
-}
-
 static std::string TargetTitle(int targetSlot)
 {
     std::string team = TeamName(TeamOf(targetSlot));
@@ -239,7 +222,7 @@ static void ShowValueMenu(int slot, int action, int targetSlot)
     const int* values = ValuesFor(action, count);
     for (int i = 0; i < count; i++)
     {
-        std::string back = std::to_string(values[i]) + "|" + TargetBack(targetSlot);
+        std::string back = std::to_string(values[i]) + "|" + ClientKey(targetSlot);
         g_pMenus->AddItemMenu(menu, back.c_str(), ValueLabel(action, values[i]).c_str());
     }
 
@@ -260,7 +243,7 @@ static void ShowValueMenu(int slot, int action, int targetSlot)
             return;
 
         int value = atoi(text.substr(0, separator).c_str());
-        int target = TargetFromBack(text.substr(separator + 1));
+        int target = ClientFromKey(text.substr(separator + 1));
         bool done = target != -1 && ApplyValue(slot, action, target, value);
 
         if (done && action == ActionSlap && IsAlive(target))
@@ -281,7 +264,7 @@ static void ShowTeamChoice(int slot, int targetSlot)
     int teams[] = { TEAM_T, TEAM_CT, TEAM_SPECTATOR };
     for (int i = 0; i < 3; i++)
     {
-        std::string back = std::to_string(teams[i]) + "|" + TargetBack(targetSlot);
+        std::string back = std::to_string(teams[i]) + "|" + ClientKey(targetSlot);
         int state = TeamOf(targetSlot) == teams[i] ? ITEM_DISABLED : ITEM_DEFAULT;
         g_pMenus->AddItemMenu(menu, back.c_str(), TeamName(teams[i]).c_str(), state);
     }
@@ -303,7 +286,7 @@ static void ShowTeamChoice(int slot, int targetSlot)
             return;
 
         int team = atoi(text.substr(0, separator).c_str());
-        int target = TargetFromBack(text.substr(separator + 1));
+        int target = ClientFromKey(text.substr(separator + 1));
         if (target != -1)
             MovePlayerToTeam(target, slot, team);
         ShowActionTargets(slot, ActionTeam);
@@ -418,7 +401,7 @@ static void ShowActionTargets(int slot, int action)
     {
         if (!FitsAction(slot, target, action))
             continue;
-        g_pMenus->AddItemMenu(menu, TargetBack(target).c_str(), TargetTitle(target).c_str());
+        g_pMenus->AddItemMenu(menu, ClientKey(target).c_str(), TargetTitle(target).c_str());
         found = true;
     }
     if (!found)
@@ -435,7 +418,7 @@ static void ShowActionTargets(int slot, int action)
         if (item >= 7)
             return;
 
-        int target = TargetFromBack(back ? back : "");
+        int target = ClientFromKey(back ? back : "");
         if (target == -1 || !FitsAction(slot, target, action))
         {
             ChatTo(slot, Text("PlayerLeft"));

@@ -7,7 +7,6 @@
 #include "punishments.h"
 #include "server_actions.h"
 #include "settings.h"
-#include "steam.h"
 #include "common.h"
 
 struct VoteState
@@ -227,7 +226,7 @@ static void ShowVoteTargets(int slot, int type)
     {
         if (!IsRealClient(target) || target == slot || !CanTarget(slot, target))
             continue;
-        std::string back = std::to_string(target) + ":" + SteamIdToText(ClientSteamId(target));
+        std::string back = ClientKey(target);
         g_pMenus->AddItemMenu(menu, back.c_str(), g_pMenus->escapeString(ClientName(target)).c_str());
         found = true;
     }
@@ -245,13 +244,8 @@ static void ShowVoteTargets(int slot, int type)
         if (item >= 7 || !back)
             return;
 
-        std::string text = back;
-        size_t colon = text.find(':');
-        if (colon == std::string::npos)
-            return;
-        int target = atoi(text.substr(0, colon).c_str());
-        uint64 steamId = strtoull(text.substr(colon + 1).c_str(), nullptr, 10);
-        if (!IsSameClient(target, steamId))
+        int target = ClientFromKey(back);
+        if (target == -1)
         {
             ChatTo(slot, Text("PlayerLeft"));
             return;

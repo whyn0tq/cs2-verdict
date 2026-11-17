@@ -298,7 +298,7 @@ static void ShowPunishTargets(int slot)
             continue;
 
         std::string name = g_pMenus->escapeString(ClientName(target));
-        g_pMenus->AddItemMenu(menu, std::to_string(target).c_str(), name.c_str());
+        g_pMenus->AddItemMenu(menu, ClientKey(target).c_str(), name.c_str());
         found = true;
     }
     if (!found)
@@ -309,9 +309,12 @@ static void ShowPunishTargets(int slot)
     SetMenuCallback(menu, [](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
-            int target = atoi(back);
-            if (!IsRealClient(target))
+            int target = ClientFromKey(back ? back : "");
+            if (target == -1)
+            {
+                ChatTo(slot, Text("PlayerLeft"));
                 return;
+            }
             PunishDraft& draft = g_Drafts[slot];
             draft.targetSlot = target;
             draft.targetSteamId = ClientSteamId(target);
@@ -575,7 +578,7 @@ static void ShowUnpunishTargets(int slot, int type)
         if (!IsRealClient(target) || !CanRemovePunishment(slot, target, type))
             continue;
         std::string name = g_pMenus->escapeString(ClientName(target));
-        g_pMenus->AddItemMenu(menu, std::to_string(target).c_str(), name.c_str());
+        g_pMenus->AddItemMenu(menu, ClientKey(target).c_str(), name.c_str());
         found = true;
     }
     if (!found)
@@ -586,8 +589,13 @@ static void ShowUnpunishTargets(int slot, int type)
     SetMenuCallback(menu, [type](const char* back, const char* front, int item, int slot) {
         if (item < 7)
         {
-            int target = atoi(back);
+            int target = ClientFromKey(back ? back : "");
             g_pMenus->ClosePlayerMenu(slot);
+            if (target == -1)
+            {
+                ChatTo(slot, Text("PlayerLeft"));
+                return;
+            }
             if (UnpunishPlayer(target, type, slot, true, ""))
             {
                 std::string message = Text("UnPunishSuccess");

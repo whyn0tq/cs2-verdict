@@ -1,6 +1,8 @@
 #pragma once
 
+#include <charconv>
 #include <string>
+#include <string_view>
 #include <vector>
 
 typedef unsigned long long uint64;
@@ -34,3 +36,26 @@ std::string ClientIp(int slot);
 int FindClientBySteamId(uint64 steamId);
 RecentClient* FindRecentClient(uint64 steamId);
 void RemoveRecentClient(uint64 steamId);
+
+inline std::string ClientKey(int slot)
+{
+    return std::to_string(slot) + ":" + std::to_string(ClientSteamId(slot));
+}
+
+inline int ClientFromKey(std::string_view key)
+{
+    size_t colon = key.find(':');
+    if (colon == std::string_view::npos)
+        return -1;
+
+    int slot = -1;
+    uint64 steamId = 0;
+    const char* separator = key.data() + colon;
+    const char* end = key.data() + key.size();
+    auto slotResult = std::from_chars(key.data(), separator, slot);
+    auto idResult = std::from_chars(separator + 1, end, steamId);
+    if (slotResult.ec != std::errc{} || slotResult.ptr != separator ||
+        idResult.ec != std::errc{} || idResult.ptr != end || steamId == 0)
+        return -1;
+    return IsSameClient(slot, steamId) ? slot : -1;
+}

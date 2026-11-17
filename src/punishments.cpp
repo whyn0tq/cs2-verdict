@@ -338,9 +338,10 @@ static void AnnounceUnpunish(int targetSlot, int type, int adminSlot)
     }
 }
 
-static void ScheduleBanKick(int slot, const std::string& reason, int seconds)
+static void ScheduleBanKick(int slot, uint64 steamId, const std::string& reason, int seconds)
 {
-    uint64 steamId = ClientSteamId(slot);
+    if (!IsSameClient(slot, steamId))
+        return;
     std::string message = BanMessage(reason, seconds);
 
     if (g_Settings.banDelay <= 0)
@@ -363,11 +364,13 @@ bool PunishPlayer(int targetSlot, int type, int seconds, const std::string& reas
     if (seconds < 0)
         seconds = 0;
 
+    uint64 steamId = ClientSteamId(targetSlot);
     std::string cleanReason = ReasonOrDefault(reason);
     if (g_pApi->AskPunish(targetSlot, type, seconds, cleanReason.c_str(), adminSlot))
         return false;
+    if (!IsSameClient(targetSlot, steamId))
+        return false;
 
-    uint64 steamId = ClientSteamId(targetSlot);
     if (writeToDatabase)
     {
         if (type == RT_BAN)
@@ -387,7 +390,7 @@ bool PunishPlayer(int targetSlot, int type, int seconds, const std::string& reas
     g_pApi->NotifyPunish(targetSlot, type, seconds, cleanReason.c_str(), adminSlot);
 
     if (type == RT_BAN)
-        ScheduleBanKick(targetSlot, cleanReason, seconds);
+        ScheduleBanKick(targetSlot, steamId, cleanReason, seconds);
     return true;
 }
 
@@ -441,8 +444,9 @@ void PunishOfflineChecked(uint64 steamId, const std::string& name, int type, int
     std::string query = "SELECT GREATEST(a.`immunity`, IFNULL(g.`immunity`, 0)) FROM " + Table("admins") + " a "
         "LEFT JOIN " + Table("srvgroups") + " g ON g.`name` = a.`srv_group` WHERE a.`authid` REGEXP " + AuthRegexp(steamId) + " LIMIT 1";
 
-    RunQuery(query, [steamId, name, type, seconds, reason, adminSlot, fromChat](sql::Result& result) {
-        if (!result.Ok())
+    uint64 adminSteamId = ClientSteamId(adminSlot);
+    RunQuery(query, [steamId, name, type, seconds, reason, adminSlot, adminSteamId, fromChat](sql::Result& result) {
+        if (!result.Ok() || !IsSameClient(adminSlot, adminSteamId))
             return;
 
         bool targetIsAdmin = result.Next();
@@ -459,7 +463,8 @@ void PunishOfflineChecked(uint64 steamId, const std::string& name, int type, int
         }
 
         PunishOffline(steamId, name, type, seconds, reason, adminSlot);
-        ReplyTo(adminSlot, fromChat, Text("PlayerPunished"));
+        if (IsSameClient(adminSlot, adminSteamId))
+            ReplyTo(adminSlot, fromChat, Text("PlayerPunished"));
     });
 }
 
@@ -646,15 +651,19 @@ void UnpunishOffline(uint64 steamId, int type, int adminSlot, const std::string&
         recent->punished[type] = false;
 
     std::string steamText = SteamIdToText(steamId);
-    RemovalCallback done = [steamText, type, adminSlot, fromChat](int affected) {
+    uint64 adminSteamId = ClientSteamId(adminSlot);
+    std::string adminName = AdminName(adminSlot);
+    RemovalCallback done = [steamText, type, adminName, adminSlot, adminSteamId, fromChat](int affected) {
         if (affected <= 0)
         {
-            ReplyTo(adminSlot, fromChat, Text("NothingToRemove"));
+            if (adminSlot == CONSOLE_SLOT || IsSameClient(adminSlot, adminSteamId))
+                ReplyTo(adminSlot, fromChat, Text("NothingToRemove"));
             return;
         }
-        META_CONPRINTF("[Verdict] Offline un%s: %s -> %s\n", TypeKey(type), AdminName(adminSlot).c_str(), steamText.c_str());
-        g_pApi->NotifyOfflineUnpunish(steamText.c_str(), type, adminSlot);
-        ReplyTo(adminSlot, fromChat, Text("PlayerUnpunished"));
+        META_CONPRINTF("[Verdict] Offline un%s: %s -> %s\n", TypeKey(type), adminName.c_str(), steamText.c_str());
+        g_pApi->NotifyOfflineUnpunish(steamText.c_str(), type, IsSameClient(adminSlot, adminSteamId) ? adminSlot : CONSOLE_SLOT);
+        if (adminSlot == CONSOLE_SLOT || IsSameClient(adminSlot, adminSteamId))
+            ReplyTo(adminSlot, fromChat, Text("PlayerUnpunished"));
     };
 
     std::string restriction = OwnPunishmentsOnly(adminSlot);
@@ -669,15 +678,20 @@ void UnbanIp(const std::string& ip, int adminSlot, const std::string& reason, bo
     std::string query = "UPDATE " + Table("bans") + RemovalFields(adminSlot, reason) +
         " WHERE `type` = 1 AND `ip` = " + Quote(ip) + ActiveOnly() + OwnPunishmentsOnly(adminSlot);
 
-    RunQuery(query, [ip, adminSlot, fromChat](sql::Result& result) {
+    uint64 adminSteamId = ClientSteamId(adminSlot);
+    std::string adminName = AdminName(adminSlot);
+    RunQuery(query, [ip, adminName, adminSlot, adminSteamId, fromChat](sql::Result& result) {
+        bool canReply = adminSlot == CONSOLE_SLOT || IsSameClient(adminSlot, adminSteamId);
         int affected = static_cast<int>(result.Affected());
         if (affected <= 0)
         {
-            ReplyTo(adminSlot, fromChat, Text("NothingToRemove"));
+            if (canReply)
+                ReplyTo(adminSlot, fromChat, Text("NothingToRemove"));
             return;
         }
-        META_CONPRINTF("[Verdict] IP unban: %s -> %s\n", AdminName(adminSlot).c_str(), ip.c_str());
-        ReplyTo(adminSlot, fromChat, Text("PlayerUnpunished"));
+        META_CONPRINTF("[Verdict] IP unban: %s -> %s\n", adminName.c_str(), ip.c_str());
+        if (canReply)
+            ReplyTo(adminSlot, fromChat, Text("PlayerUnpunished"));
     });
 }
 

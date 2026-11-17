@@ -1,8 +1,21 @@
+#include "clients.h"
 #include "menu_callback.h"
 
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
+
+static uint64 g_SteamId = 76561198000000000ULL;
+
+uint64 ClientSteamId(int slot)
+{
+    return slot == 3 ? g_SteamId : 0;
+}
+
+bool IsSameClient(int slot, uint64 steamId)
+{
+    return steamId != 0 && ClientSteamId(slot) == steamId;
+}
 
 static void TestCloseMenu()
 {
@@ -32,9 +45,27 @@ static void TestBack()
     assert(called);
 }
 
+static void TestTarget()
+{
+    const std::string key = ClientKey(3);
+    assert(ClientFromKey(key) == 3);
+    assert(ClientFromKey("") == -1);
+    assert(ClientFromKey("3") == -1);
+    assert(ClientFromKey("3:0") == -1);
+    assert(ClientFromKey(key + "suffix") == -1);
+    assert(ClientFromKey("999999999999:76561198000000000") == -1);
+
+    g_SteamId = 0;
+    assert(ClientFromKey(key) == -1);
+    g_SteamId = 76561198000000001ULL;
+    assert(ClientFromKey(key) == -1);
+    assert(ClientFromKey(ClientKey(3)) == 3);
+}
+
 int main()
 {
     TestCloseMenu();
     TestBack();
-    std::cout << "2 menu callback tests passed\n";
+    TestTarget();
+    std::cout << "3 menu tests passed\n";
 }
