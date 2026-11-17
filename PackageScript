@@ -1,0 +1,29 @@
+import os
+
+builder.SetBuildFolder('package')
+
+metamod_folder = builder.AddFolder(os.path.join('addons', 'metamod'))
+bin_folder_path = os.path.join('addons', MMSPlugin.plugin_name)
+bin_folder = builder.AddFolder(bin_folder_path)
+
+for task in MMSPlugin.binaries:
+  with open(os.path.join(builder.buildPath, MMSPlugin.plugin_name + '.vdf'), 'w') as fp:
+    fp.write('"Metamod Plugin"\n')
+    fp.write('{\n')
+    fp.write(f'\t"alias"\t"{MMSPlugin.plugin_alias}"\n')
+    fp.write(f'\t"file"\t"{os.path.join(bin_folder_path, MMSPlugin.plugin_name)}"\n')
+    fp.write('}\n')
+  builder.AddCopy(task.binary, bin_folder)
+
+builder.AddCopy(os.path.join(builder.buildPath, MMSPlugin.plugin_name + '.vdf'), metamod_folder)
+
+configs_folder = builder.AddFolder(os.path.join('addons', 'configs', 'verdict'))
+builder.AddCopy(os.path.join(builder.sourcePath, 'configs', 'verdict', 'core.ini'), configs_folder)
+builder.AddCopy(os.path.join(builder.sourcePath, 'configs', 'verdict', 'sorting.ini'), configs_folder)
+builder.AddCopy(os.path.join(builder.sourcePath, 'configs', 'verdict', 'maps.ini'), configs_folder)
+
+root_configs_folder = builder.AddFolder(os.path.join('addons', 'configs'))
+builder.AddCopy(os.path.join(builder.sourcePath, 'configs', 'databases.cfg.example'), root_configs_folder)
+
+translations_folder = builder.AddFolder(os.path.join('addons', 'translations'))
+builder.AddCopy(os.path.join(builder.sourcePath, 'translations', 'verdict.phrases.txt'), translations_folder)
