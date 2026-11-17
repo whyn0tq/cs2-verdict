@@ -1,6 +1,6 @@
 # Verdict
 
-Verdict is a CS2 administration plugin for Linux x86-64. It provides an in-game admin menu, bans, mutes, gags, and votes. It supports existing Material Admin databases and the [Verdict web panel](https://github.com/whyn0tq/cs2-verdict-web).
+Verdict is a CS2 administration plugin for Linux x86-64. It provides an in-game admin menu, bans, mutes, gags, and votes. It supports existing Material Admin databases.
 
 ## Requirements
 
