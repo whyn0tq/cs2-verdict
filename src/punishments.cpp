@@ -350,7 +350,7 @@ static void ScheduleBanKick(int slot, uint64 steamId, const std::string& reason,
         return;
     }
 
-    g_pUtils->CreateTimer((float)g_Settings.banDelay, [slot, steamId, message]() {
+    Schedule((float)g_Settings.banDelay, [slot, steamId, message]() {
         if (IsSameClient(slot, steamId))
             KickClient(slot, message, true);
         return -1.0f;

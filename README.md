@@ -5,7 +5,7 @@ Verdict is a CS2 administration plugin for Linux x86-64. It provides an in-game 
 ## Requirements
 
 - [Metamod:Source 2.0 (build 1483+)](https://www.metamodsource.net/downloads.php?branch=dev)
-- [cs2-menus (`utils.zip`)](https://github.com/whyn0tq/cs2-menus/releases)
+- [cs2-menus 2.0.0+ (`cs2-menus.zip`)](https://github.com/whyn0tq/cs2-menus/releases)
 - [cs2-DBMP 1.3.0+](https://github.com/whyn0tq/cs2-DBMP)
 - MySQL 8 or MariaDB 10.6+
 

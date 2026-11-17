@@ -18,6 +18,7 @@ class CTakeDamageInfo;
 class CCSGameRules;
 class CTimer;
 struct Menu;
+struct NetMessageInfo_t;
 class INetworkMessageInternal;
 class CNetMessage;
 class CCommand;
@@ -191,6 +192,14 @@ public:
     virtual void FireEventPost(IGameEvent *pEvent, bool bDontBroadcast) { };
 };
 
+class INetworkListener
+{
+public:
+    virtual ~INetworkListener() = default;
+    virtual void PostEvent(int nClientCount, const uint64* clients, NetMessageInfo_t* event, const CNetMessage* data) {}
+    virtual void PostEventPost(int nClientCount, const uint64* clients, NetMessageInfo_t* event, const CNetMessage* data) {}
+};
+
 class IUtilsApi
 {
 public:
@@ -291,4 +300,5 @@ public:
 
     virtual void AddProcessUsercmdsPre(SourceMM::PluginId id, ProcessUsercmdsCallback callback) = 0;
     virtual void AddProcessUsercmdsPost(SourceMM::PluginId id, ProcessUsercmdsCallback callback) = 0;
+    virtual void AddNetworkListener(SourceMM::PluginId id, INetworkListener* listener) = 0;
 };

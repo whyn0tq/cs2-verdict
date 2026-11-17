@@ -251,7 +251,7 @@ static void ShowValueMenu(int slot, int action, int targetSlot)
         else
             ShowActionTargets(slot, action);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void ShowTeamChoice(int slot, int targetSlot)
@@ -291,7 +291,7 @@ static void ShowTeamChoice(int slot, int targetSlot)
             MovePlayerToTeam(target, slot, team);
         ShowActionTargets(slot, ActionTeam);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void AskForName(int slot, int targetSlot)
@@ -427,7 +427,7 @@ static void ShowActionTargets(int slot, int action)
         }
         RunAction(slot, action, target);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void ShowOptionsMenu(int slot, const char* titleKey, const std::vector<NamedOption>& options, bool isMaps)
@@ -457,7 +457,7 @@ static void ShowOptionsMenu(int slot, const char* titleKey, const std::vector<Na
         else
             ExecuteConfig(slot, back);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void RegisterPlayerItems()

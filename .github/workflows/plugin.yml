@@ -37,6 +37,9 @@ jobs:
           clang++ -std=c++17 -D_GLIBCXX_USE_CXX11_ABI=0 -Wall -Wextra -Werror -fsanitize=address \
             -Isrc -Ithird_party tests/menu_callback_test.cpp -o build/menu-tests
           build/menu-tests
+          clang++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined \
+            -Isrc tests/timer_test.cpp -o build/timer-tests
+          build/timer-tests
 
       - name: Build
         run: |

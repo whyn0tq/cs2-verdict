@@ -142,7 +142,7 @@ static void ShowBallot(int slot)
             g_Vote.no++;
         g_pMenus->ClosePlayerMenu(slot);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static bool BeginVote(int adminSlot, int type)
@@ -180,7 +180,7 @@ static void LaunchBallots()
     }
 
     int voteId = g_Vote.id;
-    g_pUtils->CreateTimer((float)g_Settings.voteDuration, [voteId]() {
+    Schedule((float)g_Settings.voteDuration, [voteId]() {
         FinishVote(voteId);
         return -1.0f;
     });
@@ -252,7 +252,7 @@ static void ShowVoteTargets(int slot, int type)
         }
         StartPlayerVote(slot, type, target);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void ShowVoteMaps(int slot)
@@ -276,7 +276,7 @@ static void ShowVoteMaps(int slot)
         if (item < 7 && back && back[0])
             StartMapVote(slot, back);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 void RegisterVoteMenuItems()

@@ -6,6 +6,7 @@
 #include "commands.h"
 #include "effects.h"
 #include "management_menu.h"
+#include "menu_owner.h"
 #include "panel_link.h"
 #include "phrases.h"
 #include "player_actions.h"
@@ -13,6 +14,7 @@
 #include "settings.h"
 #include "votes.h"
 #include "storage.h"
+#include "timers.h"
 #include "metamod_oslink.h"
 #include "schemasystem/schemasystem.h"
 #include "filesystem/ifilesystem.h"
@@ -29,9 +31,23 @@ IUtilsApi* g_pUtils = nullptr;
 IMenusApi* g_pMenus = nullptr;
 IPlayersApi* g_pPlayers = nullptr;
 
-static CTimer* g_SecondTimer = nullptr;
+static Timers g_Timers;
+static IMenuOwnerApi* g_MenuOwner = nullptr;
+static PluginId g_UtilsPlugin = 0;
 static int g_LastVoiceNotice[MAX_SLOTS];
 static PluginId g_DatabasePlugin = 0;
+
+void Schedule(float delay, std::function<float()> callback)
+{
+    g_Timers.Add(delay, std::move(callback), [](float interval, Timers::Callback run) {
+        return g_pUtils->CreateTimer(interval, std::move(run));
+    });
+}
+
+void DisplayMenu(Menu& menu, int slot)
+{
+    g_MenuOwner->DisplayMenu(g_PLID, menu, slot);
+}
 
 static void CatchEntitySystem()
 {
@@ -168,27 +184,36 @@ static void HookStaticNames()
 static bool FindRequiredInterfaces()
 {
     int ret = 0;
-    g_pUtils = (IUtilsApi*)g_SMAPI->MetaFactory(UTILS_INTERFACE, &ret, nullptr);
-    if (ret == META_IFACE_FAILED)
+    g_pUtils = static_cast<IUtilsApi*>(g_SMAPI->MetaFactory(UTILS_INTERFACE, &ret, &g_UtilsPlugin));
+    if (!g_pUtils || ret != META_IFACE_OK)
     {
         UnloadSelf("Missing Utils system plugin (cs2-menus)");
         return false;
     }
 
-    g_pMenus = (IMenusApi*)g_SMAPI->MetaFactory(MENUS_INTERFACE, &ret, nullptr);
-    if (ret == META_IFACE_FAILED)
+    PluginId menusPlugin = 0;
+    g_pMenus = static_cast<IMenusApi*>(g_SMAPI->MetaFactory(MENUS_INTERFACE, &ret, &menusPlugin));
+    if (!g_pMenus || ret != META_IFACE_OK || menusPlugin != g_UtilsPlugin)
     {
         UnloadSelf("Missing Menus system plugin (cs2-menus)");
         return false;
     }
 
-    g_pPlayers = (IPlayersApi*)g_SMAPI->MetaFactory(PLAYERS_INTERFACE, &ret, nullptr);
-    if (ret == META_IFACE_FAILED)
+    PluginId playersPlugin = 0;
+    g_pPlayers = static_cast<IPlayersApi*>(g_SMAPI->MetaFactory(PLAYERS_INTERFACE, &ret, &playersPlugin));
+    if (!g_pPlayers || ret != META_IFACE_OK || playersPlugin != g_UtilsPlugin)
     {
         UnloadSelf("Missing Players system plugin (cs2-menus)");
         return false;
     }
 
+    PluginId ownerPlugin = 0;
+    g_MenuOwner = static_cast<IMenuOwnerApi*>(g_SMAPI->MetaFactory(MENU_OWNER_INTERFACE, &ret, &ownerPlugin));
+    if (!g_MenuOwner || ret != META_IFACE_OK || ownerPlugin != g_UtilsPlugin)
+    {
+        UnloadSelf("Missing menu ownership support from cs2-menus 2.0.0+");
+        return false;
+    }
     return true;
 }
 
@@ -215,13 +240,18 @@ bool Verdict::Unload(char* error, size_t maxlen)
     g_SMAPI->MetaFactory(SQL_INTERFACE_V2, nullptr, &databasePlugin);
     DisconnectDatabase(databasePlugin != 0 && databasePlugin == g_DatabasePlugin);
 
-    if (g_pUtils)
+    PluginId utilsPlugin = 0;
+    g_SMAPI->MetaFactory(UTILS_INTERFACE, nullptr, &utilsPlugin);
+    if (g_pUtils && utilsPlugin != 0 && utilsPlugin == g_UtilsPlugin)
     {
-        if (g_SecondTimer)
-            g_pUtils->RemoveTimer(g_SecondTimer);
+        if (g_MenuOwner)
+            g_MenuOwner->CloseMenus(g_PLID);
+        g_Timers.Clear([](CTimer* timer) { g_pUtils->RemoveTimer(timer); });
         ClearAllEffects();
         g_pUtils->ClearAllHooks(g_PLID);
     }
+    else
+        g_Timers.Forget();
     ConVar_Unregister();
 
     return true;
@@ -264,7 +294,7 @@ void Verdict::AllPluginsLoaded()
     g_pUtils->HookIsHearingClient(g_PLID, OnHearingClient);
     g_pUtils->AddChatListenerPre(g_PLID, OnChatMessage);
 
-    g_SecondTimer = g_pUtils->CreateTimer(1.0f, []() {
+    Schedule(1.0f, []() {
         CheckExpiredPunishments();
         CheckAdminExpiration();
         TickPlayerEffects();
@@ -294,6 +324,12 @@ void* Verdict::OnMetamodQuery(const char* iface, int* ret)
 
 void Verdict::OnPluginUnload(PluginId id)
 {
+    if (g_UtilsPlugin && id == g_UtilsPlugin)
+    {
+        g_UtilsPlugin = 0;
+        DisconnectDatabase();
+        UnloadSelf("cs2-menus was unloaded");
+    }
     if (g_DatabasePlugin && id == g_DatabasePlugin)
     {
         g_DatabasePlugin = 0;
@@ -361,7 +397,7 @@ const char* Verdict::GetLicense()
 
 const char* Verdict::GetVersion()
 {
-    return "1.1.1";
+    return "1.2.0";
 }
 
 const char* Verdict::GetDate()

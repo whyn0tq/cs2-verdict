@@ -30,6 +30,8 @@ extern IUtilsApi* g_pUtils;
 extern IMenusApi* g_pMenus;
 extern IPlayersApi* g_pPlayers;
 
+void Schedule(float delay, std::function<float()> callback);
+
 inline bool IsValidSlot(int slot)
 {
     return slot >= 0 && slot < MAX_SLOTS;

@@ -191,7 +191,7 @@ bool ShowAdminMenu(int slot)
         g_LastCategory[slot] = back;
         ShowCategory(slot, back);
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
     return true;
 }
 
@@ -238,7 +238,7 @@ void ShowCategory(int slot, const std::string& identity)
             ShowAdminMenu(slot);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 void ShowLastCategory(int slot)
@@ -326,7 +326,7 @@ static void ShowPunishTargets(int slot)
             ShowPunishTypes(slot, false);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void ShowOfflineTargets(int slot)
@@ -370,7 +370,7 @@ static void ShowOfflineTargets(int slot)
             ShowPunishTypes(slot, true);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static void ShowPunishTypes(int slot, bool offline)
@@ -403,7 +403,7 @@ static void ShowPunishTypes(int slot, bool offline)
             ShowLastCategory(slot);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static bool OwnReasonAllowed(int slot)
@@ -466,7 +466,7 @@ static void ShowReasons(int slot)
                 ShowPunishTargets(slot);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static std::vector<TimeOption> TimesForDraft(const PunishDraft& draft)
@@ -543,7 +543,7 @@ static void ShowTimes(int slot)
             ShowReasons(slot);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 bool HandleOwnReason(int slot, const std::string& text)
@@ -612,7 +612,7 @@ static void ShowUnpunishTargets(int slot, int type)
             ShowUnpunishTypes(slot, false);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 static std::string OfflineUnpunishQuery(int slot, int type)
@@ -675,7 +675,7 @@ static void ShowOfflineUnpunishTargets(int slot, int type)
                 ShowUnpunishTypes(slot, true);
             }
         });
-        g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+        DisplayMenu(menu, slot);
     });
 }
 
@@ -706,7 +706,7 @@ static void ShowUnpunishTypes(int slot, bool offline)
             ShowLastCategory(slot);
         }
     });
-    g_pMenus->DisplayPlayerMenu(menu, slot, true, true);
+    DisplayMenu(menu, slot);
 }
 
 void RegisterCoreMenuItems()

@@ -63,7 +63,7 @@ void ChangeMap(int adminSlot, const std::string& map)
         return;
     }
 
-    g_pUtils->CreateTimer((float)g_Settings.mapChangeDelay, [command]() {
+    Schedule((float)g_Settings.mapChangeDelay, [command]() {
         engine->ServerCommand(command.c_str());
         return -1.0f;
     });

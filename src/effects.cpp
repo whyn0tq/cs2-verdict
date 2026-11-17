@@ -5,12 +5,14 @@
 #include "common.h"
 #include "entity2/entitysystem.h"
 #include "entity2/entitykeyvalues.h"
+#include <algorithm>
 
 extern CEntitySystem* g_pEntitySystem;
 
 static const float ExplosionLifetime = 3.0f;
 
 static CEntityHandle g_FireEffects[MAX_SLOTS];
+static std::vector<CEntityHandle> g_Explosions;
 
 static CEntityInstance* Resolve(const CEntityHandle& handle)
 {
@@ -100,8 +102,12 @@ void ShowExplosion(int slot)
         return;
 
     CEntityHandle handle = particle->GetRefEHandle();
-    g_pUtils->CreateTimer(ExplosionLifetime, [handle]() {
+    g_Explosions.push_back(handle);
+    Schedule(ExplosionLifetime, [handle]() {
         RemoveByHandle(handle);
+        auto found = std::find(g_Explosions.begin(), g_Explosions.end(), handle);
+        if (found != g_Explosions.end())
+            g_Explosions.erase(found);
         return -1.0f;
     });
 }
@@ -110,4 +116,7 @@ void ClearAllEffects()
 {
     for (int slot = 0; slot < MAX_SLOTS; slot++)
         StopFireEffect(slot);
+    for (const auto& handle : g_Explosions)
+        RemoveByHandle(handle);
+    g_Explosions.clear();
 }

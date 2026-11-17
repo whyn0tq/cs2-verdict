@@ -6,6 +6,7 @@
 #include "menus.h"
 
 void SetMenuCallback(Menu& menu, MenuCallbackFunc callback);
+void DisplayMenu(Menu& menu, int slot);
 void RegisterMenuCategory(const char* identity, const char* name, OnCategoryDisplayCallback callback);
 void RegisterMenuItem(const char* identity, const char* name, const char* category, const char* permissions, OnItemDisplayCallback onDisplay, OnItemSelectCallback onSelect);
 void RegisterCoreMenuItems();
